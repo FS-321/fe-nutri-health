@@ -5,6 +5,7 @@ export default {
     extend: {},
     colors: {
       hijau: "#66D37E",
+      hijautua: "#4CAF50",
       putih: "#fff",
       biru: "#0D6EFD",
       merah: "#DC3545",
@@ -12,6 +13,7 @@ export default {
       oren: "#F79E1B",
       birutua: "#5A4CFB",
       ungu: "#D700B4",
+      abu: "#5F6D7E",
     },
   },
   plugins: [require("daisyui")],
