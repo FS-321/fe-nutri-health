@@ -41,7 +41,7 @@ const Layanan = () => {
                 "Jadwal",
                 "Aksi",
               ]}
-              endpoint={"makanan"}
+              endpoint={"layanan"}
             />
             <Pagination />
           </div>
