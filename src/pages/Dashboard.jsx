@@ -15,7 +15,7 @@ const Dashboard = () => {
       <h1 className="flex items-center text-hijau text-3xl font-semibold gap-2">
         <MdPeople size={40} /> Dashboard
       </h1>
-      <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg p-10 mt-5 rounded-lg">
+      <div className="w-full flex flex-wrap gap-2 shadow-lg p-10 mt-5 rounded-lg">
         <div className="flex flex-row gap-4 items-center card bg-biru w-[48%] rounded-sm p-5 text-putih">
           <MdOutlinePeople size={60} />
           <div className="flex flex-col justify-between">

@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import Navbar from "../Navbar";
 import SidebarAdmin from "./SidebarAdmin";
 
@@ -11,6 +12,11 @@ const LayoutAdmin = ({ children }) => {
       </div>
     </>
   );
+};
+
+// Add PropTypes validation
+LayoutAdmin.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default LayoutAdmin;

@@ -7,7 +7,7 @@ import {
   MdPerson,
   MdOutlineMapsHomeWork,
   MdOutlineDataThresholding,
-  MdArrowDropDown,
+  // MdArrowDropDown,
 } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
@@ -26,7 +26,7 @@ const iconComponents = {
 
 const SidebarAdmin = () => {
   return (
-    <div className="w-72 h-[400px] bg-base-100 shadow-lg px-0 border-1 rounded-lg">
+    <div className="w-72 h-[400px] shadow-lg px-0 border-1 rounded-lg">
       <h1 className="font-bold text-hijau text-lg px-8 pt-8 pb-5">MENU</h1>
       <ul className="flex flex-col gap-3">
         {MENU_LIST.map((item, i) => {

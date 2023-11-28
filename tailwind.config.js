@@ -12,6 +12,7 @@ export default {
       oren: "#F79E1B",
       birutua: "#5A4CFB",
       ungu: "#D700B4",
+      hitam: "#5F6D7E",
     },
   },
   plugins: [require("daisyui")],
