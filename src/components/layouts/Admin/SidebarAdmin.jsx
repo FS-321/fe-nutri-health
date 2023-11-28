@@ -4,7 +4,7 @@ import {
   MdOutlineAccessTimeFilled,
   MdWysiwyg,
   MdOutlinePeople,
-  MdOutlinePersonalInjury,
+  MdPerson,
   MdOutlineMapsHomeWork,
   MdOutlineDataThresholding,
   MdArrowDropDown,
@@ -19,7 +19,7 @@ const iconComponents = {
   MdOutlineAccessTimeFilled,
   MdWysiwyg,
   MdOutlinePeople,
-  MdOutlinePersonalInjury,
+  MdPerson,
   MdOutlineMapsHomeWork,
   MdOutlineDataThresholding,
 };

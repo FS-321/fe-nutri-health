@@ -21,22 +21,22 @@ export const MENU_LIST = [
       {
         name: "Data Pasien",
         icon: "MdOutlinePeople",
-        path: "/pasien",
+        path: "/data/pasien",
       },
       {
         name: "Data Dokter",
-        icon: "MdOutlinePersonalInjury",
-        path: "/dokter",
+        icon: "MdPerson",
+        path: "/data/dokter",
       },
       {
         name: "Data Poliklinik",
         icon: "MdOutlineMapsHomeWork",
-        path: "/poliklinik",
+        path: "/data/poliklinik",
       },
       {
         name: "Data Rekam Medis",
         icon: "MdOutlineDataThresholding",
-        path: "/rekammedis",
+        path: "/data/rekammedis",
       },
     ],
   },

@@ -5,9 +5,9 @@ const LayoutAdmin = ({ children }) => {
   return (
     <>
       <Navbar />
-      <div className="flex container mx-20 mt-10 gap-10">
+      <div className="flex px-20 mt-10 gap-10">
         <SidebarAdmin />
-        <div>{children}</div>
+        <div className="w-full">{children}</div>
       </div>
     </>
   );

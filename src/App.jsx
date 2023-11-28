@@ -14,10 +14,10 @@ function App() {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/makanan" element={<Makanan />} />
       <Route path="/layanan" element={<Layanan />} />
-      <Route path="/pasien" element={<Pasien />} />
-      <Route path="/dokter" element={<Dokter />} />
-      <Route path="/poliklinik" element={<Poliklinik />} />
-      <Route path="/rekammedis" element={<RekamMedis />} />
+      <Route path="/data/pasien" element={<Pasien />} />
+      <Route path="/data/dokter" element={<Dokter />} />
+      <Route path="/data/poliklinik" element={<Poliklinik />} />
+      <Route path="/data/rekammedis" element={<RekamMedis />} />
     </Routes>
   );
 }
