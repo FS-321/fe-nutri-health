@@ -1,16 +1,16 @@
 import Navbar from "../Navbar";
-import SidebarAdmin from "./SidebarAdmin";
+import SidebarUser from "./SidebarUser";
 
-const LayoutAdmin = ({ children }) => {
+const LayoutUser = ({ children }) => {
   return (
     <>
       <Navbar />
       <div className="flex px-20 mt-10 gap-10">
-        <SidebarAdmin />
+        <SidebarUser />
         <div className="w-full">{children}</div>
       </div>
     </>
   );
 };
 
-export default LayoutAdmin;
+export default LayoutUser;

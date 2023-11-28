@@ -1,4 +1,4 @@
-import LayoutAdmin from "../components/layouts/Admin/LayoutAdmin";
+import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 
 const Poliklinik = () => {
   return (
