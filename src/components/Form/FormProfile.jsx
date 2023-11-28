@@ -6,7 +6,7 @@ const FormProfile = () => {
     <>
       <div className="flex flex-col justify-between">
         <h1 className="flex items-center text-hijau text-3xl font-semibold gap-2">
-          <MdPerson size={40} /> Makanan
+          <MdPerson size={40} /> Profile
         </h1>
         <p className="text-abu ms-12">Edit Data user</p>
       </div>
@@ -41,7 +41,7 @@ const FormProfile = () => {
               Jenis Kelamin
             </label>
             <details className="dropdown">
-              <summary className="btn w-full justify-start">
+              <summary className="btn w-full justify-start text-abu">
                 Pilih jenis Kelamin
               </summary>
               <ul className="w-full p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">

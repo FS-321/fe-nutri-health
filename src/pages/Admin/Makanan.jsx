@@ -3,7 +3,7 @@ import { BiPlus, BiPrinter } from "react-icons/bi";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
 import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
-import Filter from "../../components/Fitur/Filter";
+import Filter from "../../components/Filter/Filter";
 import Table from "../../components/Table/Table";
 import Pagination from "../../components/Pagnation/Pagination";
 

@@ -2,7 +2,7 @@ import { MdOutlineDataThresholding } from "react-icons/md";
 
 import LayoutUser from "../../components/layouts/User/LayoutUser";
 import TableRMUser from "../../components/Table/TableRMUser";
-import Filter from "../../components/Fitur/Filter";
+import Filter from "../../components/Filter/Filter";
 import Pagination from "../../components/Pagnation/Pagination";
 
 const RekamMedis = () => {
