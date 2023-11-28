@@ -1,40 +1,40 @@
-import { MdFastfood } from "react-icons/md";
+import { MdOutlineAccessTimeFilled } from "react-icons/md"
 import { Link } from "react-router-dom";
 
-const FormMakanan = ({ action }) => {
+const FormLayanan = ({ action }) => {
   return (
     <>
       <div className="flex flex-col justify-between">
         <h1 className="flex items-center text-hijau text-3xl font-semibold gap-2">
-          <MdFastfood size={40} /> Makanan
+          <MdOutlineAccessTimeFilled size={40} /> Layanan
         </h1>
-        <p className="text-abu ms-12">{action} Data Makanan</p>
+        <p className="text-abu ms-12">{action} Data Layanan</p>
       </div>
       <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg p-5">
         <div className="w-full flex flex-col gap-2">
           <label className="text-hijau text-xl font-semibold">
-            Nama Makanan
+            Nama Layanan
           </label>
           <input
             type="text"
-            placeholder="Masukkan makanan"
+            placeholder="Masukan Layanan"
             className="input input-bordered w-full"
           />
         </div>
         <div className="w-full flex gap-5">
           <div className="w-full flex flex-col gap-2">
-            <label className="text-hijau text-xl font-semibold">Energi</label>
+            <label className="text-hijau text-xl font-semibold">Nama Dokter</label>
             <input
               type="text"
-              placeholder="Masukkan energi"
+              placeholder="Pilih Opsi "
               className="input input-bordered w-full"
             />
           </div>
           <div className="w-full flex flex-col gap-2">
-            <label className="text-hijau text-xl font-semibold">Protein</label>
+            <label className="text-hijau text-xl font-semibold">Biaya</label>
             <input
               type="text"
-              placeholder="Masukkan protein"
+              placeholder="Masukan Biaya"
               className="input input-bordered w-full"
             />
           </div>
@@ -42,25 +42,25 @@ const FormMakanan = ({ action }) => {
         <div className="w-full flex gap-5">
           <div className="w-full flex flex-col gap-2">
             <label className="text-hijau text-xl font-semibold">
-              Karbohidrat
+              Jadwal
             </label>
             <input
               type="text"
-              placeholder="Masukkan karbohidrat"
+              placeholder="Masukkan Jadwal"
               className="input input-bordered w-full"
             />
           </div>
-          <div className="w-full flex flex-col gap-2">
+          {/* <div className="w-full flex flex-col gap-2">
             <label className="text-hijau text-xl font-semibold">Lemak</label>
             <input
               type="text"
               placeholder="Masukkan lemak"
               className="input input-bordered w-full"
             />
-          </div>
+          </div> */}
         </div>
         <div className="w-full flex justify-between mt-5 gap-5">
-          <Link to={"/makanan"} className="w-full">
+          <Link to={"/layanan"} className="w-full">
             <button className="btn btn-outline btn-success w-full rounded-full text-lg">
               BATAL
             </button>
@@ -74,6 +74,6 @@ const FormMakanan = ({ action }) => {
       </div>
     </>
   );
-};
+}
 
-export default FormMakanan;
+export default FormLayanan;

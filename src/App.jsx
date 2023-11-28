@@ -9,6 +9,7 @@ import Dokter from "./pages/Dokter";
 import Poliklinik from "./pages/Poliklinik";
 import RekamMedis from "./pages/RekamMedis";
 import FormMakanan from "./components/Form/FormMakanan";
+import FormLayanan from "./components/Form/FormLayanan";
 
 function App() {
   return (
@@ -18,7 +19,10 @@ function App() {
         <Route path="tambah" element={<FormMakanan action="Tambah" />} />
         <Route path="edit/:id" element={<FormMakanan action="Edit" />} />
       </Route>
-      <Route path="/layanan" element={<Layanan />} />
+      <Route path="/layanan" element={<Layanan />}>
+        <Route path="tambah" element={<FormLayanan action="Tambah" />} />
+        <Route path="edit/:id" element={<FormLayanan action="Edit" />} />
+      </Route>
       <Route path="/data/pasien" element={<Pasien />} />
       <Route path="/data/dokter" element={<Dokter />} />
       <Route path="/data/poliklinik" element={<Poliklinik />} />
