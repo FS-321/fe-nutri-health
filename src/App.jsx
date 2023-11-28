@@ -12,6 +12,7 @@ import FormMakanan from "./components/Form/FormMakanan";
 import RekamMedisUser from "./pages/User/RekamMedis";
 import Favorite from "./pages/User/Favorite";
 import Profile from "./pages/User/Profile";
+import FormProfile from "./components/Form/FormProfile";
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
       <Route path="/users/:id">
         <Route path="rekammedis" element={<RekamMedisUser />} />
         <Route path="favorite" element={<Favorite />} />
-        <Route path="profile" element={<Profile />} />
+        <Route path="profile" element={<Profile />}>
+          <Route path="edit" element={<FormProfile />} />
+        </Route>
       </Route>
     </Routes>
   );

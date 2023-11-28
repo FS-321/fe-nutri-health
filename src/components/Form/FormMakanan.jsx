@@ -60,6 +60,7 @@ const FormMakanan = ({ action }) => {
             />
           </div>
         </div>
+
         <div className="w-full flex justify-between mt-5 gap-5">
           <Link to={"/makanan"} className="w-full">
             <button className="btn btn-outline btn-success w-full rounded-full text-lg">
