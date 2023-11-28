@@ -8,7 +8,7 @@ const FormPasien = ({ action }) => {
         <h1 className="flex items-center text-hijau text-3xl font-semibold gap-2">
           <MdOutlinePeople size={40} /> Data Pasien
         </h1>
-        <p className="text-abu ms-12">{action} Data Pasien</p>
+        <p className="text-abu ms-12">{ action } Data Pasien</p>
       </div>
       <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg p-5">
         <div className="w-full flex flex-col gap-2">
