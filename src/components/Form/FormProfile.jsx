@@ -1,7 +1,12 @@
-import { MdPerson } from "react-icons/md";
+import { useState } from "react";
+import { MdInfoOutline, MdPerson } from "react-icons/md";
 import { Link } from "react-router-dom";
 
+import Modal from "../Modal/Modal";
+
 const FormProfile = () => {
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <div className="flex flex-col justify-between">
@@ -40,19 +45,13 @@ const FormProfile = () => {
             <label className="text-hijau text-xl font-semibold">
               Jenis Kelamin
             </label>
-            <details className="dropdown">
-              <summary className="btn w-full justify-start text-abu">
-                Pilih jenis Kelamin
-              </summary>
-              <ul className="w-full p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                <li>
-                  <a>Laki-Laki</a>
-                </li>
-                <li>
-                  <a>Perempuan</a>
-                </li>
-              </ul>
-            </details>
+            <select className="select w-full">
+              <option disabled selected>
+                Pilih jenis kelamin
+              </option>
+              <option>Laki-Laki</option>
+              <option>Perempuan</option>
+            </select>
           </div>
           <div className="w-full flex flex-col gap-2">
             <label className="text-hijau text-xl font-semibold">Email</label>
@@ -87,17 +86,38 @@ const FormProfile = () => {
 
         <div className="w-full flex justify-between mt-5 gap-5">
           <Link to={`/users/${1}/profile`} className="w-full">
-            <button className="btn btn-outline btn-success w-full rounded-full text-lg">
+            <button className="btn btn-outline text-hijau w-full rounded-full text-lg hover:bg-hijau hover:border-hijau">
               BATAL
             </button>
           </Link>
-          <Link className="w-full">
+          <Link className="w-full" onClick={() => setOpen(true)}>
             <button className="btn bg-hijau text-putih btn-success w-full rounded-full text-lg">
               SIMPAN
             </button>
           </Link>
         </div>
       </div>
+
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <div className="text-center w-96">
+          <MdInfoOutline size={70} className="mx-auto text-primary" />
+          <div className="mx-auto my-4 w-48">
+            <h3 className="text-lg font-black text-abu">Confirm Edit</h3>
+            <p className="text-sm text-abu">Yakin ingin ubah profile?</p>
+          </div>
+          <div className="flex justify-between">
+            <button className="btn btn-primary w-[48%] text-putih text-bold">
+              Simpan
+            </button>
+            <button
+              className="btn bg-light w-[48%] text-abu text-bold"
+              onClick={() => setOpen(false)}
+            >
+              Batal
+            </button>
+          </div>
+        </div>
+      </Modal>
     </>
   );
 };
