@@ -1,14 +1,18 @@
 import React from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
-import Dashboard from "./pages/Dashboard";
-import Makanan from "./pages/Makanan";
-import Layanan from "./pages/Layanan";
-import Pasien from "./pages/Pasien";
-import Dokter from "./pages/Dokter";
-import Poliklinik from "./pages/Poliklinik";
-import RekamMedis from "./pages/RekamMedis";
+import Dashboard from "./pages/Admin/Dashboard";
+import Makanan from "./pages/Admin/Makanan";
+import Layanan from "./pages/Admin/Layanan";
+import Pasien from "./pages/Admin/Pasien";
+import Dokter from "./pages/Admin/Dokter";
+import Poliklinik from "./pages/Admin/Poliklinik";
+import RekamMedis from "./pages/Admin/RekamMedis";
 import FormMakanan from "./components/Form/FormMakanan";
+import RekamMedisUser from "./pages/User/RekamMedis";
+import Favorite from "./pages/User/Favorite";
+import Profile from "./pages/User/Profile";
+import FormProfile from "./components/Form/FormProfile";
 
 function App() {
   return (
@@ -23,6 +27,13 @@ function App() {
       <Route path="/data/dokter" element={<Dokter />} />
       <Route path="/data/poliklinik" element={<Poliklinik />} />
       <Route path="/data/rekammedis" element={<RekamMedis />} />
+      <Route path="/users/:id">
+        <Route path="rekammedis" element={<RekamMedisUser />} />
+        <Route path="favorite" element={<Favorite />} />
+        <Route path="profile" element={<Profile />}>
+          <Route path="edit" element={<FormProfile />} />
+        </Route>
+      </Route>
     </Routes>
   );
 }

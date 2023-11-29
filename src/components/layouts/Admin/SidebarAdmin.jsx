@@ -7,7 +7,6 @@ import {
   MdPerson,
   MdOutlineMapsHomeWork,
   MdOutlineDataThresholding,
-  MdArrowDropDown,
 } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 
