@@ -7,7 +7,7 @@ import {
   MdFastfood,
   MdOutlineAccessTimeFilled,
 } from "react-icons/md";
-import LayoutAdmin from "../components/layouts/Admin/LayoutAdmin";
+import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 
 const Dashboard = () => {
   return (

@@ -1,14 +1,19 @@
+<<<<<<< HEAD:src/pages/Dokter.jsx
 import LayoutAdmin from "../components/layouts/Admin/LayoutAdmin";
-import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import { MdPerson } from "react-icons/md";
 import { BiPlus, BiPrinter } from "react-icons/bi";
 import Filter from "../components/Fitur/Filter";
-import Table from "../components/Table/Table";
+import TablePasien from "../components/Table/TablePasien";
 import Pagination from "../components/Pagnation/Pagination";
 import { Link, Outlet, useLocation } from "react-router-dom";
+=======
+import React from "react";
+import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
+>>>>>>> bc27370f8c68e964cf080348735365f5ed1c2ffa:src/pages/Admin/Dokter.jsx
 
-const Layanan = () => {
+const Dokter = () => {
   const location = useLocation();
-  const isLocation = location.pathname === "/layanan";
+  const isLocation = location.pathname === "/data/dokter";
 
   return (
     <LayoutAdmin>
@@ -16,10 +21,10 @@ const Layanan = () => {
         <>
           <div className="flex items-center justify-between">
             <h1 className="flex items-center text-hijau text-3xl font-semibold gap-2">
-              <MdOutlineAccessTimeFilled size={40} /> Layanan
+              <MdPerson size={40} />Data Dokter
             </h1>
             <div className="flex gap-1">
-              <Link to={"/layanan/tambah"}>
+              <Link to={"/data/dokter/tambah"}>
                 <button className="flex items-center bg-hijautua text-putih p-2 gap-1 rounded-sm hover:bg-success">
                   <BiPlus size={24} /> Tambah Data
                 </button>
@@ -32,16 +37,17 @@ const Layanan = () => {
 
           <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg">
             <Filter />
-            <Table
+            <TablePasien
               head={[
                 "No",
-                "Nama Layanan",
-                "Biaya",
                 "Nama Dokter",
-                "Jadwal",
+                "Spesialis",
+                "Email",
+                "Telp",
+                "Alamat",
                 "Aksi",
               ]}
-              endpoint={"layanan"}
+              endpoint={"pasien"}
             />
             <Pagination />
           </div>
@@ -53,4 +59,4 @@ const Layanan = () => {
   );
 };
 
-export default Layanan;
+export default Dokter;

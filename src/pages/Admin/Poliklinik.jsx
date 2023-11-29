@@ -5,6 +5,7 @@ import Filter from "../components/Fitur/Filter";
 import Pagination from "../components/Pagnation/Pagination";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import TablePoliklinik from "../components/Table/TablePoliklinik";
+import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 
 const Poliklinik = () => {
   const location = useLocation();

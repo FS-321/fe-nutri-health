@@ -1,14 +1,18 @@
+<<<<<<< HEAD:src/pages/Pasien.jsx
 import LayoutAdmin from "../components/layouts/Admin/LayoutAdmin";
-import { MdPerson } from "react-icons/md";
+import { MdOutlinePeople } from "react-icons/md";
 import { BiPlus, BiPrinter } from "react-icons/bi";
 import Filter from "../components/Fitur/Filter";
 import TablePasien from "../components/Table/TablePasien";
 import Pagination from "../components/Pagnation/Pagination";
 import { Link, Outlet, useLocation } from "react-router-dom";
+=======
+import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
+>>>>>>> bc27370f8c68e964cf080348735365f5ed1c2ffa:src/pages/Admin/Pasien.jsx
 
-const Dokter = () => {
+const Pasien = () => {
   const location = useLocation();
-  const isLocation = location.pathname === "/data/dokter";
+  const isLocation = location.pathname === "/data/pasien";
 
   return (
     <LayoutAdmin>
@@ -16,10 +20,10 @@ const Dokter = () => {
         <>
           <div className="flex items-center justify-between">
             <h1 className="flex items-center text-hijau text-3xl font-semibold gap-2">
-              <MdPerson size={40} />Data Dokter
+              <MdOutlinePeople size={40} /> Pasien
             </h1>
             <div className="flex gap-1">
-              <Link to={"/data/dokter/tambah"}>
+              <Link to={"/data/pasien/tambah"}>
                 <button className="flex items-center bg-hijautua text-putih p-2 gap-1 rounded-sm hover:bg-success">
                   <BiPlus size={24} /> Tambah Data
                 </button>
@@ -35,8 +39,8 @@ const Dokter = () => {
             <TablePasien
               head={[
                 "No",
-                "Nama Dokter",
-                "Spesialis",
+                "Nama Pasien",
+                "Jenis Kelamin",
                 "Email",
                 "Telp",
                 "Alamat",
@@ -54,4 +58,4 @@ const Dokter = () => {
   );
 };
 
-export default Dokter;
+export default Pasien;
