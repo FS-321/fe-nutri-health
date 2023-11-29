@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { BiSolidPencil, BiSolidTrash } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
@@ -5,7 +6,6 @@ const TablePoliklinik = ({ head, endpoint }) => {
   return (
     <div className="w-full overflow-x-auto">
       <table className="table table-zebra">
-        {/* head */}
         <thead className="bg-hijau text-putih text-[16px]">
           <tr>
             {head.map((item, i) => (
@@ -46,6 +46,11 @@ const TablePoliklinik = ({ head, endpoint }) => {
       </table>
     </div>
   );
+};
+
+TablePoliklinik.propTypes = {
+  head: PropTypes.array.isRequired,
+  endpoint: PropTypes.string.isRequired,
 };
 
 export default TablePoliklinik;

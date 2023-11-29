@@ -1,13 +1,9 @@
-<<<<<<< HEAD
-import { MdFastfood } from "react-icons/md";
-import { Link } from "react-router-dom";
-=======
-import React, { useState } from "react";
 import { MdFastfood, MdInfoOutline } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
+import { useState } from "react";
+import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
->>>>>>> bc27370f8c68e964cf080348735365f5ed1c2ffa
 
 const FormMakanan = ({ action }) => {
   const [open, setOpen] = useState(false);
@@ -113,6 +109,10 @@ const FormMakanan = ({ action }) => {
       </Modal>
     </>
   );
+};
+
+FormMakanan.propTypes = {
+  action: PropTypes.string.isRequired,
 };
 
 export default FormMakanan;

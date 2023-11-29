@@ -1,15 +1,11 @@
-<<<<<<< HEAD:src/pages/Dokter.jsx
-import LayoutAdmin from "../components/layouts/Admin/LayoutAdmin";
 import { MdPerson } from "react-icons/md";
 import { BiPlus, BiPrinter } from "react-icons/bi";
-import Filter from "../components/Fitur/Filter";
-import TablePasien from "../components/Table/TablePasien";
-import Pagination from "../components/Pagnation/Pagination";
 import { Link, Outlet, useLocation } from "react-router-dom";
-=======
-import React from "react";
+
 import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
->>>>>>> bc27370f8c68e964cf080348735365f5ed1c2ffa:src/pages/Admin/Dokter.jsx
+import Filter from "../../components/Filter/Filter";
+import TablePasien from "../../components/Table/TablePasien";
+import Pagination from "../../components/Pagnation/Pagination";
 
 const Dokter = () => {
   const location = useLocation();
@@ -21,7 +17,8 @@ const Dokter = () => {
         <>
           <div className="flex items-center justify-between">
             <h1 className="flex items-center text-hijau text-3xl font-semibold gap-2">
-              <MdPerson size={40} />Data Dokter
+              <MdPerson size={40} />
+              Data Dokter
             </h1>
             <div className="flex gap-1">
               <Link to={"/data/dokter/tambah"}>

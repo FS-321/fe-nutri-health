@@ -1,11 +1,10 @@
-import LayoutAdmin from "../components/layouts/Admin/LayoutAdmin";
+import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 import { MdOutlineMapsHomeWork } from "react-icons/md";
 import { BiPlus, BiPrinter } from "react-icons/bi";
-import Filter from "../components/Fitur/Filter";
-import Pagination from "../components/Pagnation/Pagination";
+import Filter from "../../components/Filter/Filter";
+import Pagination from "../../components/Pagnation/Pagination";
 import { Link, Outlet, useLocation } from "react-router-dom";
-import TablePoliklinik from "../components/Table/TablePoliklinik";
-import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
+import TablePoliklinik from "../../components/Table/TablePoliklinik";
 
 const Poliklinik = () => {
   const location = useLocation();
@@ -17,7 +16,8 @@ const Poliklinik = () => {
         <>
           <div className="flex items-center justify-between">
             <h1 className="flex items-center text-hijau text-3xl font-semibold gap-2">
-              <MdOutlineMapsHomeWork size={40} />Data Poliklinik
+              <MdOutlineMapsHomeWork size={40} />
+              Data Poliklinik
             </h1>
             <div className="flex gap-1">
               <Link to={"/data/poliklinik/tambah"}>
@@ -34,12 +34,7 @@ const Poliklinik = () => {
           <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg">
             <Filter />
             <TablePoliklinik
-              head={[
-                "No",
-                "Nama Poliklinik",
-                "Gedung",
-                "Aksi",
-              ]}
+              head={["No", "Nama Poliklinik", "Gedung", "Aksi"]}
               endpoint={"pasien"}
             />
             <Pagination />

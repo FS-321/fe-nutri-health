@@ -1,14 +1,10 @@
-<<<<<<< HEAD:src/pages/Pasien.jsx
-import LayoutAdmin from "../components/layouts/Admin/LayoutAdmin";
+import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 import { MdOutlinePeople } from "react-icons/md";
 import { BiPlus, BiPrinter } from "react-icons/bi";
-import Filter from "../components/Fitur/Filter";
-import TablePasien from "../components/Table/TablePasien";
-import Pagination from "../components/Pagnation/Pagination";
+import Filter from "../../components/Filter/Filter";
+import TablePasien from "../../components/Table/TablePasien";
+import Pagination from "../../components/Pagnation/Pagination";
 import { Link, Outlet, useLocation } from "react-router-dom";
-=======
-import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
->>>>>>> bc27370f8c68e964cf080348735365f5ed1c2ffa:src/pages/Admin/Pasien.jsx
 
 const Pasien = () => {
   const location = useLocation();
