@@ -35,7 +35,7 @@ const Poliklinik = () => {
             <Filter />
             <TablePoliklinik
               head={["No", "Nama Poliklinik", "Gedung", "Aksi"]}
-              endpoint={"pasien"}
+              endpoint={"Poliklinik"}
             />
             <Pagination />
           </div>
