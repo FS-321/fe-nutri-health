@@ -4,7 +4,7 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 
 import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 import Filter from "../../components/Filter/Filter";
-import TablePasien from "../../components/Table/TablePasien";
+import TableDokter from "../../components/Table/TableDokter";
 import Pagination from "../../components/Pagnation/Pagination";
 
 const Dokter = () => {
@@ -34,7 +34,7 @@ const Dokter = () => {
 
           <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg">
             <Filter />
-            <TablePasien
+            <TableDokter
               head={[
                 "No",
                 "Nama Dokter",
@@ -44,7 +44,7 @@ const Dokter = () => {
                 "Alamat",
                 "Aksi",
               ]}
-              endpoint={"pasien"}
+              endpoint={"dokter"}
             />
             <Pagination />
           </div>
