@@ -1,6 +1,6 @@
 import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 import Filter from "../../components/Filter/Filter";
-import TablePasien from "../../components/Table/TablePasien";
+import TableRMAdmin from "../../components/Table/TableRMAdmin";
 import Pagination from "../../components/Pagnation/Pagination";
 import { MdOutlineDataThresholding } from "react-icons/md";
 import { BiPlus, BiPrinter } from "react-icons/bi";
@@ -33,7 +33,7 @@ const RekamMedis = () => {
 
           <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg">
             <Filter />
-            <TablePasien
+            <TableRMAdmin
               head={[
                 "No",
                 "Tanggal",
@@ -43,7 +43,7 @@ const RekamMedis = () => {
                 "Diagnosa",
                 "Aksi",
               ]}
-              endpoint={"pasien"}
+              endpoint={"rekammedis"}
             />
             <Pagination />
           </div>
