@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
 
-const Table = ({ head, endpoint }) => {
+const TableLayanan = ({ head, endpoint }) => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -30,14 +30,12 @@ const Table = ({ head, endpoint }) => {
               <td>
                 <Link
                   to={`/${endpoint}/edit/${1}`}
-                  className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih"
-                >
+                  className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih">
                   <BiSolidPencil size={20} />
                 </Link>
                 <Link
                   onClick={() => setOpen(true)}
-                  className="btn btn-error p-1 h-8 min-h-0 text-putih"
-                >
+                  className="btn btn-error p-1 h-8 min-h-0 text-putih">
                   <BiSolidTrash size={20} />
                 </Link>
               </td>
@@ -51,14 +49,12 @@ const Table = ({ head, endpoint }) => {
               <td>
                 <Link
                   to={`/${endpoint}/edit/${1}`}
-                  className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih"
-                >
+                  className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih">
                   <BiSolidPencil size={20} />
                 </Link>
                 <Link
                   onClick={() => setOpen(true)}
-                  className="btn btn-error p-1 h-8 min-h-0 text-putih"
-                >
+                  className="btn btn-error p-1 h-8 min-h-0 text-putih">
                   <BiSolidTrash size={20} />
                 </Link>
               </td>
@@ -80,8 +76,7 @@ const Table = ({ head, endpoint }) => {
             </button>
             <button
               className="btn bg-light w-[48%] text-abu text-bold"
-              onClick={() => setOpen(false)}
-            >
+              onClick={() => setOpen(false)}>
               Batal
             </button>
           </div>
@@ -91,9 +86,9 @@ const Table = ({ head, endpoint }) => {
   );
 };
 
-Table.propTypes = {
+TableLayanan.propTypes = {
   head: PropTypes.array.isRequired,
   endpoint: PropTypes.string.isRequired,
 };
 
-export default Table;
+export default TableLayanan;

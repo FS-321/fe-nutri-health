@@ -2,7 +2,7 @@ import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import { BiPlus, BiPrinter } from "react-icons/bi";
 import Filter from "../../components/Filter/Filter";
-import Table from "../../components/Table/Table";
+import TableLayanan from "../../components/Table/TableLayanan";
 import Pagination from "../../components/Pagnation/Pagination";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
@@ -32,7 +32,7 @@ const Layanan = () => {
 
           <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg">
             <Filter />
-            <Table
+            <TableLayanan
               head={[
                 "No",
                 "Nama Layanan",
