@@ -7,9 +7,17 @@ import Filter from "../../components/Filter/Filter";
 import Table from "../../components/Table/Table";
 import Pagination from "../../components/Pagnation/Pagination";
 
+import React, { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+
 const Makanan = () => {
   const location = useLocation();
   const isLocation = location.pathname === "/makanan";
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   return (
     <LayoutAdmin>
@@ -25,7 +33,10 @@ const Makanan = () => {
                   <BiPlus size={24} /> Tambah Data
                 </button>
               </Link>
-              <button className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
+              <button
+                onClick={handlePrint}
+                className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary"
+              >
                 <BiPrinter size={24} /> Cetak Data
               </button>
             </div>
@@ -36,6 +47,7 @@ const Makanan = () => {
             <Table
               head={["No", "Makanan", "Energi", "Karbohidrat", "Lemak", "Aksi"]}
               endpoint={"makanan"}
+              print={componentRef}
             />
             <Pagination />
           </div>
