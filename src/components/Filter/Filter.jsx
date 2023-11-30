@@ -1,5 +1,3 @@
-import { BiFilter } from "react-icons/bi";
-
 const Filter = () => {
   return (
     <div className="w-full flex items-center justify-between p-5">

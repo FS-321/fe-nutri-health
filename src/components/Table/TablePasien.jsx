@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
 
-const TablePasien = ({ head, endpoint }) => {
+const TablePasien = ({ head, endpoint, print }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <div className="w-full overflow-x-auto">
+      <div ref={print} className="w-full overflow-x-auto">
         <table className="table table-zebra">
           {/* head */}
           <thead className="bg-hijau text-putih text-[16px]">
@@ -91,6 +91,7 @@ const TablePasien = ({ head, endpoint }) => {
 TablePasien.propTypes = {
   head: PropTypes.array.isRequired,
   endpoint: PropTypes.string.isRequired,
+  print: PropTypes.func.isRequired,
 };
 
 export default TablePasien;

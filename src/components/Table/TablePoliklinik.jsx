@@ -5,12 +5,12 @@ import { useState } from "react";
 
 import Modal from "../Modal/Modal";
 
-const TablePoliklinik = ({ head, endpoint }) => {
+const TablePoliklinik = ({ head, endpoint, print }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <div className="w-full overflow-x-auto">
+      <div ref={print} className="w-full overflow-x-auto">
         <table className="table table-zebra">
           <thead className="bg-hijau text-putih text-[16px]">
             <tr>
@@ -84,6 +84,7 @@ const TablePoliklinik = ({ head, endpoint }) => {
 TablePoliklinik.propTypes = {
   head: PropTypes.array.isRequired,
   endpoint: PropTypes.string.isRequired,
+  print: PropTypes.func.isRequired,
 };
 
 export default TablePoliklinik;

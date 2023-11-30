@@ -7,9 +7,17 @@ import Filter from "../../components/Filter/Filter";
 import TableDokter from "../../components/Table/TableDokter";
 import Pagination from "../../components/Pagnation/Pagination";
 
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+
 const Dokter = () => {
   const location = useLocation();
   const isLocation = location.pathname === "/data/dokter";
+
+    const componentRef = useRef();
+    const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+    });
 
   return (
     <LayoutAdmin>
@@ -26,7 +34,9 @@ const Dokter = () => {
                   <BiPlus size={24} /> Tambah Data
                 </button>
               </Link>
-              <button className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
+              <button
+                onClick={handlePrint}
+                className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
                 <BiPrinter size={24} /> Cetak Data
               </button>
             </div>
@@ -45,6 +55,7 @@ const Dokter = () => {
                 "Aksi",
               ]}
               endpoint={"dokter"}
+              print={componentRef}
             />
             <Pagination />
           </div>

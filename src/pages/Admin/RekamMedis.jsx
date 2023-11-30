@@ -1,14 +1,23 @@
 import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 import Filter from "../../components/Filter/Filter";
 import TableRMAdmin from "../../components/Table/TableRMAdmin";
+
 import Pagination from "../../components/Pagnation/Pagination";
 import { MdOutlineDataThresholding } from "react-icons/md";
 import { BiPlus, BiPrinter } from "react-icons/bi";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+
 const RekamMedis = () => {
   const location = useLocation();
   const isLocation = location.pathname === "/data/rekammedis";
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   return (
     <LayoutAdmin>
@@ -25,7 +34,9 @@ const RekamMedis = () => {
                   <BiPlus size={24} /> Tambah Data
                 </button>
               </Link>
-              <button className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
+              <button
+                onClick={handlePrint}
+                className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
                 <BiPrinter size={24} /> Cetak Data
               </button>
             </div>
@@ -44,6 +55,7 @@ const RekamMedis = () => {
                 "Aksi",
               ]}
               endpoint={"rekammedis"}
+              print={componentRef}
             />
             <Pagination />
           </div>

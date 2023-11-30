@@ -94,6 +94,7 @@ const Table = ({ head, endpoint, print }) => {
 Table.propTypes = {
   head: PropTypes.array.isRequired,
   endpoint: PropTypes.string.isRequired,
+  print: PropTypes.func.isRequired,
 };
 
 export default Table;

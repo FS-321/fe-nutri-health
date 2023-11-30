@@ -1,15 +1,23 @@
 import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 import { MdOutlineMapsHomeWork } from "react-icons/md";
 import { BiPlus, BiPrinter } from "react-icons/bi";
+
 import Filter from "../../components/Filter/Filter";
 import Pagination from "../../components/Pagnation/Pagination";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import TablePoliklinik from "../../components/Table/TablePoliklinik";
 
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+
 const Poliklinik = () => {
   const location = useLocation();
   const isLocation = location.pathname === "/data/poliklinik";
 
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
   return (
     <LayoutAdmin>
       {isLocation ? (
@@ -25,7 +33,9 @@ const Poliklinik = () => {
                   <BiPlus size={24} /> Tambah Data
                 </button>
               </Link>
-              <button className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
+              <button
+                onClick={handlePrint}
+                className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
                 <BiPrinter size={24} /> Cetak Data
               </button>
             </div>
@@ -36,6 +46,7 @@ const Poliklinik = () => {
             <TablePoliklinik
               head={["No", "Nama Poliklinik", "Gedung", "Aksi"]}
               endpoint={"Poliklinik"}
+              print={componentRef}
             />
             <Pagination />
           </div>

@@ -6,9 +6,17 @@ import TablePasien from "../../components/Table/TablePasien";
 import Pagination from "../../components/Pagnation/Pagination";
 import { Link, Outlet, useLocation } from "react-router-dom";
 
+import { useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+
 const Pasien = () => {
   const location = useLocation();
   const isLocation = location.pathname === "/data/pasien";
+
+  const componentRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+  });
 
   return (
     <LayoutAdmin>
@@ -24,7 +32,9 @@ const Pasien = () => {
                   <BiPlus size={24} /> Tambah Data
                 </button>
               </Link>
-              <button className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
+              <button 
+              onClick={handlePrint}
+              className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
                 <BiPrinter size={24} /> Cetak Data
               </button>
             </div>
@@ -43,6 +53,7 @@ const Pasien = () => {
                 "Aksi",
               ]}
               endpoint={"pasien"}
+              print={componentRef}
             />
             <Pagination />
           </div>

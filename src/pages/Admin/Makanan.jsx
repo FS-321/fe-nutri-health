@@ -7,7 +7,7 @@ import Filter from "../../components/Filter/Filter";
 import Table from "../../components/Table/Table";
 import Pagination from "../../components/Pagnation/Pagination";
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 
 const Makanan = () => {
