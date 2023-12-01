@@ -13,10 +13,16 @@ import RekamMedisUser from "./pages/User/RekamMedis";
 import Favorite from "./pages/User/Favorite";
 import Profile from "./pages/User/Profile";
 import FormProfile from "./components/Form/FormProfile";
+import Login from "./pages/signin";
+import Register from "./pages/signup";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/makanan" element={<Makanan />}>
         <Route path="tambah" element={<FormMakanan action="Tambah" />} />

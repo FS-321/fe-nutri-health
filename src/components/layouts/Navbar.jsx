@@ -8,6 +8,8 @@ import {
 } from "react-icons/md";
 import { Link } from "react-router-dom";
 
+import { role, user } from "../../utils/userLogin";
+
 const Navbar = () => {
   return (
     <div className="navbar bg-hijau p-0">
@@ -41,47 +43,52 @@ const Navbar = () => {
                       />
                     </div>
                   </div>{" "}
-                  Admin
+                  {user.email}
                 </summary>
                 <ul className="p-2 bg-base-100 rounded-t-none text-hijau relative z-10">
-                  {/* admin */}
-                  <li>
-                    <Link to={"/dashboard"}>
-                      <MdDashboard /> Dashboard
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={"/makanan"}>
-                      <MdFastfood /> Makanan
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={"/layanan"}>
-                      <MdOutlineAccessTimeFilled /> Layanan
-                    </Link>
-                  </li>
+                  {role === "user" ? (
+                    <>
+                      <li>
+                        <Link to={`/users/${1}/rekammedis`}>
+                          <MdOutlineDataThresholding /> Rekam Medis
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/users/${1}/favorite`}>
+                          <MdFavorite /> Favorite
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={`/users/${1}/profile`}>
+                          <MdPerson /> Profile
+                        </Link>
+                      </li>
+                    </>
+                  ) : (
+                    <>
+                      <li>
+                        <Link to={"/dashboard"}>
+                          <MdDashboard /> Dashboard
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={"/makanan"}>
+                          <MdFastfood /> Makanan
+                        </Link>
+                      </li>
+                      <li>
+                        <Link to={"/layanan"}>
+                          <MdOutlineAccessTimeFilled /> Layanan
+                        </Link>
+                      </li>
+                    </>
+                  )}
                   <li>
                     <Link
                       to={"/dashboard"}
                       className="btn btn-sm bg-hijau text-putih hover:text-hijau mt-2"
                     >
                       Logout
-                    </Link>
-                  </li>
-                  {/* user */}
-                  <li>
-                    <Link to={`/users/${1}/rekammedis`}>
-                      <MdOutlineDataThresholding /> Rekam Medis
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={`/users/${1}/favorite`}>
-                      <MdFavorite /> Favorite
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={`/users/${1}/profile`}>
-                      <MdPerson /> Profile
                     </Link>
                   </li>
                 </ul>
