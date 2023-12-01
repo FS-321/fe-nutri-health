@@ -1,23 +1,73 @@
+import React, { useEffect, useRef, useState } from "react";
+import { useReactToPrint } from "react-to-print";
 import { MdFastfood } from "react-icons/md";
-import { BiPlus, BiPrinter } from "react-icons/bi";
+import { BiPlus, BiPrinter, BiSolidPencil, BiSolidTrash } from "react-icons/bi";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import api from "../../api/index";
 
 import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 import Filter from "../../components/Filter/Filter";
 import Table from "../../components/Table/Table";
 import Pagination from "../../components/Pagnation/Pagination";
 
-import React, { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
-
 const Makanan = () => {
   const location = useLocation();
   const isLocation = location.pathname === "/makanan";
+
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
+  const [id, setId] = useState(0);
+
+  const handleDelete = (idDelete) => {
+    setOpen(true);
+    setId(idDelete);
+  };
 
   const componentRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
+
+  const fetchDataMakanan = async () => {
+    try {
+      const { data } = await api.get(`/makanan`, {
+        pages: 1,
+        limit: 1,
+      });
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // const searchData = async () => {
+  //   try {
+  //     const { data } = await api.get(`/products/search?q=${search}`);
+  //     setData(data.products);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  const deleteData = async () => {
+    try {
+      const { data } = await api.delete(`products/${id}`);
+      console.log(data.isDeleted);
+      setOpen(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataMakanan();
+  }, [page]);
+
+  // useEffect(() => {
+  //   searchData();
+  // }, [search]);
 
   return (
     <LayoutAdmin>
@@ -43,13 +93,51 @@ const Makanan = () => {
           </div>
 
           <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg">
-            <Filter />
+            <Filter setSearch={setSearch} />
+
             <Table
-              head={["No", "Makanan", "Energi", "Karbohidrat", "Lemak", "Aksi"]}
-              endpoint={"makanan"}
+              head={[
+                "No",
+                "Makanan",
+                "Energi",
+                "Protein",
+                "Lemak",
+                "Karbohidrat",
+                "Aksi",
+              ]}
+              open={open}
+              setOpen={setOpen}
               print={componentRef}
-            />
-            <Pagination />
+              data={data}
+              deleteData={deleteData}
+            >
+              {data?.map((item, i) => (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>{item.nama_makanan}</td>
+                  <td>{item.energi}</td>
+                  <td>{item.protein}</td>
+                  <td>{item.lemak}</td>
+                  <td>{item.karbohidrat}</td>
+                  <td>
+                    <Link
+                      to={`/makanan/edit/${1}`}
+                      className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih"
+                    >
+                      <BiSolidPencil size={20} />
+                    </Link>
+                    <Link
+                      onClick={() => handleDelete(item.id)}
+                      className="btn btn-error p-1 h-8 min-h-0 text-putih"
+                    >
+                      <BiSolidTrash size={20} />
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </Table>
+
+            <Pagination setPage={setPage} />
           </div>
         </>
       ) : (

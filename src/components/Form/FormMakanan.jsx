@@ -1,14 +1,44 @@
 import React, { useState } from "react";
 import { MdFastfood, MdInfoOutline } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
+import api from "../../api";
 
 import Modal from "../Modal/Modal";
 
 const FormMakanan = ({ action }) => {
-  const [open, setOpen] = useState(false);
-
   const location = useLocation();
   const isLocation = location.pathname === "/makanan/tambah";
+
+  const [open, setOpen] = useState(false);
+  const [data, setData] = useState({
+    title: "",
+    price: "",
+    rating: "",
+    stock: "",
+    discountPercentage: "",
+  });
+
+  const handleOnChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const addDataMakanan = async () => {
+    try {
+      const res = await api.get("/products/add", data);
+      setData({
+        title: "",
+        price: "",
+        rating: "",
+        stock: "",
+        discountPercentage: "",
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <>
@@ -25,8 +55,10 @@ const FormMakanan = ({ action }) => {
           </label>
           <input
             type="text"
+            name="title"
             placeholder="Masukkan makanan"
             className="input input-bordered w-full"
+            onChange={handleOnChange}
           />
         </div>
         <div className="w-full flex gap-5">
@@ -34,36 +66,44 @@ const FormMakanan = ({ action }) => {
             <label className="text-hijau text-xl font-semibold">Energi</label>
             <input
               type="text"
+              name="price"
               placeholder="Masukkan energi"
               className="input input-bordered w-full"
+              onChange={handleOnChange}
             />
           </div>
           <div className="w-full flex flex-col gap-2">
             <label className="text-hijau text-xl font-semibold">Protein</label>
             <input
               type="text"
+              name="rating"
               placeholder="Masukkan protein"
               className="input input-bordered w-full"
+              onChange={handleOnChange}
             />
           </div>
         </div>
         <div className="w-full flex gap-5">
+          <div className="w-full flex flex-col gap-2">
+            <label className="text-hijau text-xl font-semibold">Lemak</label>
+            <input
+              type="text"
+              name="stock"
+              placeholder="Masukkan energi"
+              className="input input-bordered w-full"
+              onChange={handleOnChange}
+            />
+          </div>
           <div className="w-full flex flex-col gap-2">
             <label className="text-hijau text-xl font-semibold">
               Karbohidrat
             </label>
             <input
               type="text"
-              placeholder="Masukkan karbohidrat"
+              name="discountPercentage"
+              placeholder="Masukkan protein"
               className="input input-bordered w-full"
-            />
-          </div>
-          <div className="w-full flex flex-col gap-2">
-            <label className="text-hijau text-xl font-semibold">Lemak</label>
-            <input
-              type="text"
-              placeholder="Masukkan lemak"
-              className="input input-bordered w-full"
+              onChange={handleOnChange}
             />
           </div>
         </div>
@@ -94,8 +134,11 @@ const FormMakanan = ({ action }) => {
             </p>
           </div>
           <div className="flex justify-between">
-            <button className="btn btn-primary w-[48%] text-putih text-bold">
-              Simpan
+            <button
+              className="btn btn-primary w-[48%] text-putih text-bold"
+              onClick={() => addDataMakanan()}
+            >
+              Ya
             </button>
             <button
               className="btn bg-light w-[48%] text-abu text-bold"
