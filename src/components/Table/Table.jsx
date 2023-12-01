@@ -1,13 +1,8 @@
-import { useState } from "react";
-import { BiSolidPencil, BiSolidTrash } from "react-icons/bi";
-import { Link } from "react-router-dom";
-import PropTypes from "prop-types";
+import { BiSolidTrash } from "react-icons/bi";
 
 import Modal from "../Modal/Modal";
 
-const Table = ({ head, endpoint, print }) => {
-  const [open, setOpen] = useState(false);
-
+const Table = ({ head, open, setOpen, print, children, deleteData }) => {
   return (
     <>
       <div ref={print} className="w-full overflow-x-auto">
@@ -20,50 +15,7 @@ const Table = ({ head, endpoint, print }) => {
               ))}
             </tr>
           </thead>
-          <tbody className="text-abu">
-            <tr>
-              <td>1</td>
-              <td>Cy Ganderton</td>
-              <td>Quality Control Specialist</td>
-              <td>Blue</td>
-              <td>Blue</td>
-              <td>
-                <Link
-                  to={`/${endpoint}/edit/${1}`}
-                  className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih"
-                >
-                  <BiSolidPencil size={20} />
-                </Link>
-                <Link
-                  onClick={() => setOpen(true)}
-                  className="btn btn-error p-1 h-8 min-h-0 text-putih"
-                >
-                  <BiSolidTrash size={20} />
-                </Link>
-              </td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>Hart Hagerty</td>
-              <td>Desktop Support Technician</td>
-              <td>Purple</td>
-              <td>Purple</td>
-              <td>
-                <Link
-                  to={`/${endpoint}/edit/${1}`}
-                  className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih"
-                >
-                  <BiSolidPencil size={20} />
-                </Link>
-                <Link
-                  onClick={() => setOpen(true)}
-                  className="btn btn-error p-1 h-8 min-h-0 text-putih"
-                >
-                  <BiSolidTrash size={20} />
-                </Link>
-              </td>
-            </tr>
-          </tbody>
+          <tbody className="text-abu">{children}</tbody>
         </table>
       </div>
 
@@ -75,7 +27,10 @@ const Table = ({ head, endpoint, print }) => {
             <p className="text-sm text-abu">Yakin ingin hapus data?</p>
           </div>
           <div className="flex justify-between">
-            <button className="btn btn-error w-[48%] text-putih text-bold">
+            <button
+              className="btn btn-error w-[48%] text-putih text-bold"
+              onClick={() => deleteData()}
+            >
               Hapus
             </button>
             <button

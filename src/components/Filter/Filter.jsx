@@ -5,6 +5,7 @@ const Filter = () => {
         type="text"
         placeholder="Type here"
         className="input input-bordered w-full h-10 max-w-xs"
+        onChange={(e) => setSearch(e.target.value)}
       />
       <select className="select w-28 text-lg border-hijau text-hijau">
         <option disabled selected>

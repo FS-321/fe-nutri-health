@@ -1,12 +1,30 @@
+import { useEffect, useState } from "react";
 import { MdCreate, MdPerson } from "react-icons/md";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
+import api from "../../api";
 
 import LayoutUser from "../../components/layouts/User/LayoutUser";
 import DetailUser from "../../components/Details/DetailUser";
 
 const Profile = () => {
+  const { id } = useParams();
   const location = useLocation();
   const isLocation = location.pathname === `/users/${1}/profile`;
+
+  const [data, setData] = useState({});
+
+  const fetchDataUser = async () => {
+    try {
+      const { data } = await api.get(`/products/${id}`);
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataUser();
+  }, []);
 
   return (
     <LayoutUser>
@@ -25,7 +43,7 @@ const Profile = () => {
             </div>
           </div>
 
-          <DetailUser />
+          <DetailUser data={data} />
         </>
       ) : (
         <Outlet />

@@ -1,8 +1,12 @@
 import {
   MdDashboard,
   MdFastfood,
+  MdFavorite,
   MdOutlineAccessTimeFilled,
+  MdOutlineDataThresholding,
+  MdPerson,
 } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
@@ -39,21 +43,46 @@ const Navbar = () => {
                   </div>{" "}
                   Admin
                 </summary>
-                <ul className="p-2 bg-base-100 rounded-t-none text-hijau">
+                <ul className="p-2 bg-base-100 rounded-t-none text-hijau relative z-10">
+                  {/* admin */}
                   <li>
-                    <a>
+                    <Link to={"/dashboard"}>
                       <MdDashboard /> Dashboard
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a>
+                    <Link to={"/makanan"}>
                       <MdFastfood /> Makanan
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a>
+                    <Link to={"/layanan"}>
                       <MdOutlineAccessTimeFilled /> Layanan
-                    </a>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      to={"/dashboard"}
+                      className="btn btn-sm bg-hijau text-putih hover:text-hijau mt-2"
+                    >
+                      Logout
+                    </Link>
+                  </li>
+                  {/* user */}
+                  <li>
+                    <Link to={`/users/${1}/rekammedis`}>
+                      <MdOutlineDataThresholding /> Rekam Medis
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={`/users/${1}/favorite`}>
+                      <MdFavorite /> Favorite
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={`/users/${1}/profile`}>
+                      <MdPerson /> Profile
+                    </Link>
                   </li>
                 </ul>
               </details>
