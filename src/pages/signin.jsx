@@ -7,9 +7,9 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [error, setError] = useState(false);
-  const [password, setPassword] = useState("");
 
   const handleSubmit = async () => {
     try {
@@ -23,7 +23,7 @@ const SignIn = () => {
       setEmail("");
       setPassword("");
 
-      navigate("/");
+      navigate("/", { replace: true });
     } catch (error) {
       setError(true);
       console.log(error);

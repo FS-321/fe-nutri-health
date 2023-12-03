@@ -1,19 +1,21 @@
 import useFavoriteStore, { selectDeleteFavorite } from "../../stores/favorite";
 
-const CardMakanan = ({ item, icon }) => {
+const CardMakanan = ({ item, icon, action }) => {
   const deleteFavorite = useFavoriteStore(selectDeleteFavorite);
 
   return (
     <div className="w-52 flex flex-col bg-base-100 shadow-lg rounded-lg relative">
       <div>
         <button
-          className="btn btn-circle btn-sm text-merah absolute right-2 top-2"
+          className={`btn btn-circle btn-sm absolute right-2 top-2 ${
+            action === "add" ? "text-hijau" : "text-merah"
+          }`}
           onClick={() => deleteFavorite(item.id)}
         >
           {icon}
         </button>
         <img
-          src={item.url}
+          src="https://www.dapurkobe.co.id/wp-content/uploads/udang-goreng-bumbu.jpg"
           alt="makanan"
           className="rounded-ss-lg max-h-36 w-full"
         />

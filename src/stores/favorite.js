@@ -1,6 +1,10 @@
 import create from "zustand";
 import { produce } from "immer";
+import api from "../api";
 
+import { userLogin } from "../utils/userAuth";
+
+const user = userLogin();
 const data = [
   {
     id: 1,
@@ -41,8 +45,17 @@ const data = [
 ];
 
 const sliceFavorite = (set) => ({
-  favorite: data,
+  favorite: [],
   error: null,
+
+  fetchFavorite: () => {
+    set(
+      produce(async (state) => {
+        const { data } = await api.get("/favorite", { pages: 1, limit: 1 });
+        console.log(data);
+      })
+    );
+  },
 
   addFavorite: (payload) => {
     set(
@@ -75,6 +88,7 @@ const useFavoriteStore = create(sliceFavorite);
 
 export const selectFavorite = (state) => state.favorite;
 export const selectError = (state) => state.error;
+export const selectFetchFavorite = (state) => state.fetchFavorite;
 export const selectAddFavorite = (state) => state.addFavorite;
 export const selectDeleteFavorite = (state) => state.deleteFavorite;
 

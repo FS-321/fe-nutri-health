@@ -1,21 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MdFastfood, MdInfoOutline } from "react-icons/md";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
 
 import Modal from "../Modal/Modal";
 
 const FormMakanan = ({ action }) => {
+  const navigate = useNavigate();
+  const { id } = useParams();
   const location = useLocation();
   const isLocation = location.pathname === "/makanan/tambah";
 
   const [open, setOpen] = useState(false);
+  const [error, setError] = useState(false);
   const [data, setData] = useState({
-    title: "",
-    price: "",
-    rating: "",
-    stock: "",
-    discountPercentage: "",
+    nama: "",
+    energi: null,
+    protein: null,
+    lemak: null,
+    karbohidrat: null,
   });
 
   const handleOnChange = (e) => {
@@ -26,19 +29,75 @@ const FormMakanan = ({ action }) => {
   };
 
   const addDataMakanan = async () => {
+    if (
+      !data.energi ||
+      !data.karbohidrat ||
+      !data.lemak ||
+      !data.nama ||
+      !data.protein
+    ) {
+      return setError(true);
+    }
+
     try {
-      const res = await api.get("/products/add", data);
+      await api.post("/makanan", {
+        nama_makanan: data.nama,
+        energi: data.energi,
+        protein: data.protein,
+        lemak: data.lemak,
+        karbohidrat: data.karbohidrat,
+      });
+
+      navigate("/makanan", { replace: true });
+
       setData({
-        title: "",
-        price: "",
-        rating: "",
-        stock: "",
-        discountPercentage: "",
+        nama: "",
+        energi: 0,
+        protein: 0,
+        lemak: 0,
+        karbohidrat: 0,
       });
     } catch (error) {
       console.log(error.message);
     }
   };
+
+  const fetchById = async () => {
+    try {
+      const { data } = await api.get(`/makanan/${id}`);
+
+      setData({
+        nama: data.nama_makanan,
+        energi: data.energi,
+        protein: data.protein,
+        lemak: data.lemak,
+        karbohidrat: data.karbohidrat,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const editDataMakanan = async () => {
+    console.log(data);
+    try {
+      const res = await api.put(`/makanan/${id}`, {
+        nama_makanan: data.nama,
+        energi: data.energi,
+        protein: data.protein,
+        lemak: data.lemak,
+        karbohidrat: data.karbohidrat,
+      });
+      console.log(res);
+      navigate("/makanan");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchById();
+  }, [id]);
 
   return (
     <>
@@ -49,37 +108,59 @@ const FormMakanan = ({ action }) => {
         <p className="text-abu ms-12">{action} Data Makanan</p>
       </div>
       <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg p-5">
+        {error && (
+          <div role="alert" className="alert alert-error">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="stroke-current shrink-0 h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              onClick={() => setError(false)}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+            <span>Failed! Data not null</span>
+          </div>
+        )}
         <div className="w-full flex flex-col gap-2">
           <label className="text-hijau text-xl font-semibold">
             Nama Makanan
           </label>
           <input
             type="text"
-            name="title"
+            name="nama"
             placeholder="Masukkan makanan"
             className="input input-bordered w-full"
             onChange={handleOnChange}
+            value={data?.nama}
           />
         </div>
         <div className="w-full flex gap-5">
           <div className="w-full flex flex-col gap-2">
             <label className="text-hijau text-xl font-semibold">Energi</label>
             <input
-              type="text"
-              name="price"
+              type="number"
+              name="energi"
               placeholder="Masukkan energi"
               className="input input-bordered w-full"
               onChange={handleOnChange}
+              value={data?.energi}
             />
           </div>
           <div className="w-full flex flex-col gap-2">
             <label className="text-hijau text-xl font-semibold">Protein</label>
             <input
-              type="text"
-              name="rating"
+              type="number"
+              name="protein"
               placeholder="Masukkan protein"
               className="input input-bordered w-full"
               onChange={handleOnChange}
+              value={data?.protein}
             />
           </div>
         </div>
@@ -87,11 +168,12 @@ const FormMakanan = ({ action }) => {
           <div className="w-full flex flex-col gap-2">
             <label className="text-hijau text-xl font-semibold">Lemak</label>
             <input
-              type="text"
-              name="stock"
-              placeholder="Masukkan energi"
+              type="number"
+              name="lemak"
+              placeholder="Masukkan lemak"
               className="input input-bordered w-full"
               onChange={handleOnChange}
+              value={data?.lemak}
             />
           </div>
           <div className="w-full flex flex-col gap-2">
@@ -99,11 +181,12 @@ const FormMakanan = ({ action }) => {
               Karbohidrat
             </label>
             <input
-              type="text"
-              name="discountPercentage"
-              placeholder="Masukkan protein"
+              type="number"
+              name="karbohidrat"
+              placeholder="Masukkan karbohidrat"
               className="input input-bordered w-full"
               onChange={handleOnChange}
+              value={data?.karbohidrat}
             />
           </div>
         </div>
@@ -136,7 +219,9 @@ const FormMakanan = ({ action }) => {
           <div className="flex justify-between">
             <button
               className="btn btn-primary w-[48%] text-putih text-bold"
-              onClick={() => addDataMakanan()}
+              onClick={() =>
+                isLocation ? addDataMakanan() : editDataMakanan()
+              }
             >
               Ya
             </button>

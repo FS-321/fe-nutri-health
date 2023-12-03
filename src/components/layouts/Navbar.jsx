@@ -5,12 +5,16 @@ import {
   MdOutlineAccessTimeFilled,
   MdOutlineDataThresholding,
   MdPerson,
+  MdOutlineLogin,
 } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { role, user } from "../../utils/userLogin";
+import { handleLogout, userLogin } from "../../utils/userAuth";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const user = userLogin();
+
   return (
     <div className="navbar bg-hijau p-0">
       <div className="container mx-20">
@@ -21,7 +25,7 @@ const Navbar = () => {
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1 text-putih text-lg items-center">
             <li>
-              <a>Home</a>
+              <Link to={"/"}>Home</Link>
             </li>
             <li>
               <a>About Us</a>
@@ -32,68 +36,87 @@ const Navbar = () => {
             <li>
               <a>Nutrition</a>
             </li>
-            <li>
-              <details>
-                <summary>
-                  <div className="avatar">
-                    <div className="w-10 rounded-full">
-                      <img
-                        alt="Tailwind CSS Navbar component"
-                        src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                      />
-                    </div>
-                  </div>{" "}
-                  {user.email}
-                </summary>
-                <ul className="p-2 bg-base-100 rounded-t-none text-hijau relative z-10">
-                  {role === "user" ? (
-                    <>
-                      <li>
-                        <Link to={`/users/${1}/rekammedis`}>
-                          <MdOutlineDataThresholding /> Rekam Medis
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`/users/${1}/favorite`}>
-                          <MdFavorite /> Favorite
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={`/users/${1}/profile`}>
-                          <MdPerson /> Profile
-                        </Link>
-                      </li>
-                    </>
-                  ) : (
-                    <>
-                      <li>
-                        <Link to={"/dashboard"}>
-                          <MdDashboard /> Dashboard
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={"/makanan"}>
-                          <MdFastfood /> Makanan
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to={"/layanan"}>
-                          <MdOutlineAccessTimeFilled /> Layanan
-                        </Link>
-                      </li>
-                    </>
-                  )}
-                  <li>
-                    <Link
-                      to={"/dashboard"}
-                      className="btn btn-sm bg-hijau text-putih hover:text-hijau mt-2"
-                    >
-                      Logout
-                    </Link>
-                  </li>
-                </ul>
-              </details>
-            </li>
+            {user ? (
+              <li>
+                <details>
+                  <summary>
+                    <div className="avatar">
+                      <div className="w-10 rounded-full">
+                        <img
+                          alt="Tailwind CSS Navbar component"
+                          src="https://i.pinimg.com/originals/c6/e9/ed/c6e9ed167165ca99c4d428426e256fae.png"
+                        />
+                      </div>
+                    </div>{" "}
+                    {user?.email}
+                  </summary>
+                  <ul className="p-2 bg-base-100 rounded-t-none text-hijau relative z-10">
+                    {user?.role === "user" ? (
+                      <>
+                        <li>
+                          <Link to={`/users/${1}/rekammedis`}>
+                            <MdOutlineDataThresholding /> Rekam Medis
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={`/users/${1}/favorite`}>
+                            <MdFavorite /> Favorite
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={`/users/${1}/profile`}>
+                            <MdPerson /> Profile
+                          </Link>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <Link to={"/dashboard"}>
+                            <MdDashboard /> Dashboard
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={"/makanan"}>
+                            <MdFastfood /> Makanan
+                          </Link>
+                        </li>
+                        <li>
+                          <Link to={"/layanan"}>
+                            <MdOutlineAccessTimeFilled /> Layanan
+                          </Link>
+                        </li>
+                      </>
+                    )}
+                    <li>
+                      <button
+                        onClick={() => handleLogout(navigate)}
+                        className="btn btn-sm bg-hijau text-putih hover:text-hijau mt-2"
+                      >
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </details>
+              </li>
+            ) : (
+              <li className="flex flex-row gap-1">
+                <Link
+                  to={"/login"}
+                  className="btn btn-outline border-putih text-putih text-lg hover:text-putih"
+                >
+                  <MdOutlineLogin />
+                  Login
+                </Link>
+                <Link
+                  to={"/register"}
+                  className="btn bg-putih text-hijau text-lg hover:text-putih"
+                >
+                  <MdOutlineLogin />
+                  Register
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </div>

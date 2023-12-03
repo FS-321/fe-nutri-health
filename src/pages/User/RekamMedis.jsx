@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import { MdOutlineDataThresholding } from "react-icons/md";
+import api from "../../api";
 
 import LayoutUser from "../../components/layouts/User/LayoutUser";
 import Filter from "../../components/Filter/Filter";
@@ -6,6 +8,24 @@ import Pagination from "../../components/Pagnation/Pagination";
 import TableRMUser from "../../components/Table/TableRMUser";
 
 const RekamMedis = () => {
+  const [data, setData] = useState([]);
+
+  const fetchDataRM = async () => {
+    try {
+      const { data } = await api.get(`/makanan`, {
+        pages: 1,
+        limit: 1,
+      });
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataRM();
+  }, [data]);
+
   return (
     <LayoutUser>
       <h1 className="flex items-center text-hijau text-3xl font-semibold gap-2">
@@ -16,24 +36,8 @@ const RekamMedis = () => {
 
         <TableRMUser
           head={["No", "Tanggal", "Pasien", "Keluhan", "Dokter", "Diagnosa"]}
-        >
-          <tr>
-            <td>1</td>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <td>Blue</td>
-            <td>Blue</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Hart Hagerty</td>
-            <td>Desktop Support Technician</td>
-            <td>Purple</td>
-            <td>Purple</td>
-            <td>Purple</td>
-          </tr>
-        </TableRMUser>
+          data={data}
+        />
 
         <Pagination />
       </div>

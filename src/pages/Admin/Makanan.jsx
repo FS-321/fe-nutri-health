@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { MdFastfood } from "react-icons/md";
 import { BiPlus, BiPrinter, BiSolidPencil, BiSolidTrash } from "react-icons/bi";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import api from "../../api/index";
 
 import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
@@ -11,6 +11,7 @@ import Table from "../../components/Table/Table";
 import Pagination from "../../components/Pagnation/Pagination";
 
 const Makanan = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const isLocation = location.pathname === "/makanan";
 
@@ -36,6 +37,7 @@ const Makanan = () => {
         pages: 1,
         limit: 1,
       });
+
       setData(data);
     } catch (error) {
       console.log(error);
@@ -53,9 +55,11 @@ const Makanan = () => {
 
   const deleteData = async () => {
     try {
-      const { data } = await api.delete(`products/${id}`);
-      console.log(data.isDeleted);
+      await api.delete(`makanan/${id}`);
+
       setOpen(false);
+
+      navigate("/makanan");
     } catch (error) {
       console.log(error);
     }
@@ -63,7 +67,7 @@ const Makanan = () => {
 
   useEffect(() => {
     fetchDataMakanan();
-  }, [page]);
+  }, [data]);
 
   // useEffect(() => {
   //   searchData();
@@ -121,13 +125,13 @@ const Makanan = () => {
                   <td>{item.karbohidrat}</td>
                   <td>
                     <Link
-                      to={`/makanan/edit/${1}`}
+                      to={`/makanan/edit/${item.makanan_id}`}
                       className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih"
                     >
                       <BiSolidPencil size={20} />
                     </Link>
                     <Link
-                      onClick={() => handleDelete(item.id)}
+                      onClick={() => handleDelete(item.makanan_id)}
                       className="btn btn-error p-1 h-8 min-h-0 text-putih"
                     >
                       <BiSolidTrash size={20} />

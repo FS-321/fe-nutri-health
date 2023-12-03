@@ -6,10 +6,19 @@ import CardMakanan from "../../components/Cards/CardMakanan";
 import Filter from "../../components/Filter/Filter";
 import Pagination from "../../components/Pagnation/Pagination";
 
-import useFavoriteStore, { selectFavorite } from "../../stores/favorite";
+import useFavoriteStore, {
+  selectFavorite,
+  selectFetchFavorite,
+} from "../../stores/favorite";
+import { useEffect } from "react";
 
 const Favorite = () => {
   const favorites = useFavoriteStore(selectFavorite);
+  const fetchFavorites = useFavoriteStore(selectFetchFavorite);
+
+  useEffect(() => {
+    fetchFavorites();
+  }, []);
 
   return (
     <LayoutUser>

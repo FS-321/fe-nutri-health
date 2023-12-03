@@ -1,6 +1,6 @@
 import React from "react";
 
-const TableRMUser = ({ head }) => {
+const TableRMUser = ({ head, data }) => {
   return (
     <div className="w-full overflow-x-auto">
       <table className="table table-zebra">
@@ -13,22 +13,16 @@ const TableRMUser = ({ head }) => {
           </tr>
         </thead>
         <tbody className="text-abu">
-          <tr>
-            <td>1</td>
-            <td>Cy Ganderton</td>
-            <td>Quality Control Specialist</td>
-            <td>Blue</td>
-            <td>Blue</td>
-            <td>Blue</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Hart Hagerty</td>
-            <td>Desktop Support Technician</td>
-            <td>Purple</td>
-            <td>Purple</td>
-            <td>Purple</td>
-          </tr>
+          {data?.map((item, i) => (
+            <tr key={i}>
+              <td>{i + 1}</td>
+              <td>{item.nama_makanan}</td>
+              <td>{item.energi}</td>
+              <td>{item.protein}</td>
+              <td>{item.lemak}</td>
+              <td>{item.karbohidrat}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
