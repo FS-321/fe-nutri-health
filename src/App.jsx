@@ -33,7 +33,7 @@ function App() {
       <Route path="/data/dokter" element={<Dokter />} />
       <Route path="/data/poliklinik" element={<Poliklinik />} />
       <Route path="/data/rekammedis" element={<RekamMedis />} />
-      <Route path="/users/:id">
+      <Route path="/users/:iduser">
         <Route path="rekammedis" element={<RekamMedisUser />} />
         <Route path="favorite" element={<Favorite />} />
         <Route path="profile" element={<Profile />}>

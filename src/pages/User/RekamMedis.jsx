@@ -12,10 +12,11 @@ const RekamMedis = () => {
 
   const fetchDataRM = async () => {
     try {
-      const { data } = await api.get(`/makanan`, {
+      const { data } = await api.get(`/data-rekam-medis`, {
         pages: 1,
         limit: 1,
       });
+
       setData(data);
     } catch (error) {
       console.log(error);

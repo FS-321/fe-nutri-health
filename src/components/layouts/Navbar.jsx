@@ -7,7 +7,7 @@ import {
   MdPerson,
   MdOutlineLogin,
 } from "react-icons/md";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import { handleLogout, userLogin } from "../../utils/userAuth";
 
@@ -54,17 +54,17 @@ const Navbar = () => {
                     {user?.role === "user" ? (
                       <>
                         <li>
-                          <Link to={`/users/${1}/rekammedis`}>
+                          <Link to={`/users/${user.user_id}/rekammedis`}>
                             <MdOutlineDataThresholding /> Rekam Medis
                           </Link>
                         </li>
                         <li>
-                          <Link to={`/users/${1}/favorite`}>
+                          <Link to={`/users/${user.user_id}/favorite`}>
                             <MdFavorite /> Favorite
                           </Link>
                         </li>
                         <li>
-                          <Link to={`/users/${1}/profile`}>
+                          <Link to={`/users/${user.user_id}/profile`}>
                             <MdPerson /> Profile
                           </Link>
                         </li>
