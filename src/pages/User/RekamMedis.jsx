@@ -25,7 +25,7 @@ const RekamMedis = () => {
 
   useEffect(() => {
     fetchDataRM();
-  }, [data]);
+  }, []);
 
   return (
     <LayoutUser>

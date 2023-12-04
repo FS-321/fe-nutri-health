@@ -79,16 +79,14 @@ const FormMakanan = ({ action }) => {
   };
 
   const editDataMakanan = async () => {
-    console.log(data);
     try {
-      const res = await api.put(`/makanan/${id}`, {
+      await api.put(`/makanan/${id}`, {
         nama_makanan: data.nama,
         energi: data.energi,
         protein: data.protein,
         lemak: data.lemak,
         karbohidrat: data.karbohidrat,
       });
-      console.log(res);
       navigate("/makanan");
     } catch (error) {
       console.log(error);

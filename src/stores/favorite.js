@@ -66,7 +66,6 @@ const sliceFavorite = (set) => ({
   },
 
   addFavorite: (id) => {
-    console.log(id);
     set(
       produce(async (state) => {
         const findId = state.favorite.some((state) => state.id === id);
@@ -85,8 +84,8 @@ const sliceFavorite = (set) => ({
       produce(async (state) => {
         const findId = state.favorite.some((state) => state.id === id);
 
-        if (findId) {
-          state.error = "id sudah ada";
+        if (!findId) {
+          state.error = "id tidak ada";
         } else {
           await api.delete(`/makanan/${id}/favorite`);
         }

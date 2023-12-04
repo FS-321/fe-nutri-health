@@ -18,7 +18,7 @@ const Favorite = () => {
 
   useEffect(() => {
     fetchFavorites();
-  }, [favorites]);
+  }, []);
 
   return (
     <LayoutUser>

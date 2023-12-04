@@ -56,6 +56,7 @@ const Makanan = () => {
   const deleteData = async () => {
     try {
       await api.delete(`makanan/${id}`);
+      fetchDataMakanan();
 
       setOpen(false);
 
@@ -67,7 +68,7 @@ const Makanan = () => {
 
   useEffect(() => {
     fetchDataMakanan();
-  }, [data]);
+  }, []);
 
   // useEffect(() => {
   //   searchData();
