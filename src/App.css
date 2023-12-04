@@ -1,0 +1,51 @@
+.custom-hijau {
+    color: #66D37E;
+  }
+  
+  .custom-d-green {
+    background-color: #60C376;
+  }
+  
+  .font-hijau-pudar {
+    color: #BFDB33;
+  }
+  
+  .font-hijau{
+    color: #60C376;
+  }
+
+  .font-abu {
+    color: #5F6D7E;
+  }
+  
+  .photo {
+    width: 620px;
+  }
+  
+  .bg-service {
+    background-color: #F3F3F3;
+  }
+  
+  .icon{
+    width: 15px;
+  }
+
+.bg-whitefc{
+    background-color: #ffff;
+}
+
+.bg-blue-custom{
+    background-color: #03A9F4;
+}
+
+.bg-hijau-custom {
+    background-color: #66D37E;
+}
+
+.bg-merah-custom {
+    background-color: #EB001B;
+}
+
+.bg-oren-custom{
+    background-color: #F79E1B;
+}
