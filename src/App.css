@@ -1,51 +1,51 @@
 .custom-hijau {
-    color: #66D37E;
-  }
-  
-  .custom-d-green {
-    background-color: #60C376;
-  }
-  
-  .font-hijau-pudar {
-    color: #BFDB33;
-  }
-  
-  .font-hijau{
-    color: #60C376;
-  }
-
-  .font-abu {
-    color: #5F6D7E;
-  }
-  
-  .photo {
-    width: 620px;
-  }
-  
-  .bg-service {
-    background-color: #F3F3F3;
-  }
-  
-  .icon{
-    width: 15px;
-  }
-
-.bg-whitefc{
-    background-color: #ffff;
+  color: #66d37e;
 }
 
-.bg-blue-custom{
-    background-color: #03A9F4;
+.custom-d-green {
+  background-color: #60c376;
+}
+
+.font-hijau-pudar {
+  color: #bfdb33;
+}
+
+.font-hijau {
+  color: #60c376;
+}
+
+.font-abu {
+  color: #5f6d7e;
+}
+
+.photo {
+  width: 620px;
+}
+
+.bg-service {
+  background-color: #f3f3f3;
+}
+
+.icon {
+  width: 15px;
+}
+
+.bg-whitefc {
+  background-color: #ffff;
+}
+
+.bg-blue-custom {
+  background-color: #03a9f4;
 }
 
 .bg-hijau-custom {
-    background-color: #66D37E;
+  background-color: #66d37e;
 }
 
 .bg-merah-custom {
-    background-color: #EB001B;
+  background-color: #eb001b;
 }
 
-.bg-oren-custom{
-    background-color: #F79E1B;
+.bg-oren-custom {
+  background-color: #f79e1b;
 }

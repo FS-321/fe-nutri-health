@@ -1,11 +1,61 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdInfoOutline, MdPerson } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import api from "../../api";
 
 import Modal from "../Modal/Modal";
+import { userLogin } from "../../utils/userAuth";
 
-const FormProfile = () => {
+const FormProfile = (props) => {
+  const { iduser } = useParams();
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
+  const [data, setData] = useState({
+    nama_depan: "",
+    nama_belakang: "",
+    email: "",
+    no_hp: "",
+    password: "",
+  });
+
+  const handleOnChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const fetchDataUser = async () => {
+    try {
+      const { data } = await api.get(`/user/${iduser}`);
+      setData({
+        nama_depan: data.dataValues.nama_depan,
+        nama_belakang: data.dataValues.nama_belakang,
+        email: data.dataValues.email,
+        no_hp: data.dataValues.no_hp,
+        password: data.dataValues.password,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataUser();
+  }, []);
+
+  const handleEdit = async () => {
+    const { nama_depan, nama_belakang, email, no_hp, password } = data;
+    const payload = { nama_depan, nama_belakang, email, no_hp, password };
+
+    try {
+      await api.put("/user", payload);
+      navigate(`/users/${iduser}/profile`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -24,8 +74,11 @@ const FormProfile = () => {
             </label>
             <input
               type="text"
+              name="nama_depan"
               placeholder="Masukkan nama depan"
               className="input input-bordered w-full"
+              onChange={handleOnChange}
+              value={data?.nama_depan}
             />
           </div>
           <div className="w-full flex flex-col gap-2">
@@ -34,31 +87,11 @@ const FormProfile = () => {
             </label>
             <input
               type="text"
+              name="nama_belakang"
               placeholder="Masukkan nama belakang"
               className="input input-bordered w-full"
-            />
-          </div>
-        </div>
-
-        <div className="w-full flex gap-5">
-          <div className="w-full flex flex-col gap-2">
-            <label className="text-hijau text-xl font-semibold">
-              Jenis Kelamin
-            </label>
-            <select className="select w-full">
-              <option disabled selected>
-                Pilih jenis kelamin
-              </option>
-              <option>Laki-Laki</option>
-              <option>Perempuan</option>
-            </select>
-          </div>
-          <div className="w-full flex flex-col gap-2">
-            <label className="text-hijau text-xl font-semibold">Email</label>
-            <input
-              type="text"
-              placeholder="Masukkan email"
-              className="input input-bordered w-full"
+              onChange={handleOnChange}
+              value={data?.nama_belakang}
             />
           </div>
         </div>
@@ -70,22 +103,41 @@ const FormProfile = () => {
             </label>
             <input
               type="number"
+              name="no_hp"
               placeholder="Masukkan nomor"
               className="input input-bordered w-full"
+              onChange={handleOnChange}
+              value={data?.no_hp}
             />
           </div>
           <div className="w-full flex flex-col gap-2">
-            <label className="text-hijau text-xl font-semibold">Alamat</label>
+            <label className="text-hijau text-xl font-semibold">Email</label>
             <input
               type="text"
-              placeholder="Masukkan alamat"
+              name="email"
+              placeholder="Masukkan email"
               className="input input-bordered w-full"
+              onChange={handleOnChange}
+              value={data?.email}
+            />
+          </div>
+        </div>
+
+        <div className="w-full flex gap-5">
+          <div className="w-full flex flex-col gap-2">
+            <label className="text-hijau text-xl font-semibold">Password</label>
+            <input
+              type="text"
+              name="password"
+              placeholder="Masukkan password baru"
+              className="input input-bordered w-full"
+              onChange={handleOnChange}
             />
           </div>
         </div>
 
         <div className="w-full flex justify-between mt-5 gap-5">
-          <Link to={`/users/${1}/profile`} className="w-full">
+          <Link to={`/users/${iduser}/profile`} className="w-full">
             <button className="btn btn-outline text-hijau w-full rounded-full text-lg hover:bg-hijau hover:border-hijau">
               BATAL
             </button>
@@ -106,7 +158,11 @@ const FormProfile = () => {
             <p className="text-sm text-abu">Yakin ingin ubah profile?</p>
           </div>
           <div className="flex justify-between">
-            <button className="btn btn-primary w-[48%] text-putih text-bold">
+            <button
+              type="submit"
+              onClick={() => handleEdit()}
+              className="btn btn-primary w-[48%] text-putih text-bold"
+            >
               Simpan
             </button>
             <button

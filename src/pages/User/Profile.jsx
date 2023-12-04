@@ -7,16 +7,16 @@ import LayoutUser from "../../components/layouts/User/LayoutUser";
 import DetailUser from "../../components/Details/DetailUser";
 
 const Profile = () => {
-  const { id } = useParams();
+  const { iduser } = useParams();
   const location = useLocation();
-  const isLocation = location.pathname === `/users/${1}/profile`;
+  const isLocation = location.pathname === `/users/${iduser}/profile`;
 
   const [data, setData] = useState({});
 
   const fetchDataUser = async () => {
     try {
-      const { data } = await api.get(`/products/${id}`);
-      setData(data);
+      const { data } = await api.get(`/user/${iduser}`);
+      setData(data.dataValues);
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +35,12 @@ const Profile = () => {
               <MdPerson size={40} /> Profile
             </h1>
             <div className="flex gap-1">
-              <Link to={`/users/${1}/profile/edit`}>
+              <Link
+                to={{
+                  pathname: `/users/${iduser}/profile/edit`,
+                  state: data,
+                }}
+              >
                 <button className="flex items-center bg-warning text-putih p-2 gap-1 rounded-sm hover:bg-oren">
                   <MdCreate size={24} /> Edit Profile
                 </button>
