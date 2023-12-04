@@ -15,7 +15,7 @@ import Profile from "./pages/User/Profile";
 import FormProfile from "./components/Form/FormProfile";
 import Login from "./pages/signin";
 import Register from "./pages/signup";
-import LandingPage from "./pages/LandingPage";
+import LandingPage from "./pages/index";
 
 function App() {
   return (
