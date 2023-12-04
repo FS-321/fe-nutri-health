@@ -18,7 +18,7 @@ const Favorite = () => {
 
   useEffect(() => {
     fetchFavorites();
-  }, []);
+  }, [favorites]);
 
   return (
     <LayoutUser>
@@ -31,7 +31,11 @@ const Favorite = () => {
 
         <div className="flex flex-wrap gap-4 px-5">
           {favorites.map((item, i) => (
-            <CardMakanan key={i} item={item} icon={<IoMdTrash size={24} />} />
+            <CardMakanan
+              key={i}
+              item={item}
+              icon={<IoMdTrash size={24} action={"delete"} />}
+            />
           ))}
         </div>
 

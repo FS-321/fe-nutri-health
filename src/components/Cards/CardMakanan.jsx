@@ -1,6 +1,10 @@
-import useFavoriteStore, { selectDeleteFavorite } from "../../stores/favorite";
+import useFavoriteStore, {
+  selectAddFavorite,
+  selectDeleteFavorite,
+} from "../../stores/favorite";
 
 const CardMakanan = ({ item, icon, action }) => {
+  const addfavorite = useFavoriteStore(selectAddFavorite);
   const deleteFavorite = useFavoriteStore(selectDeleteFavorite);
 
   return (
@@ -10,7 +14,11 @@ const CardMakanan = ({ item, icon, action }) => {
           className={`btn btn-circle btn-sm absolute right-2 top-2 ${
             action === "add" ? "text-hijau" : "text-merah"
           }`}
-          onClick={() => deleteFavorite(item.id)}
+          onClick={() =>
+            action === "add"
+              ? addfavorite(item?.makanan_id)
+              : deleteFavorite(item?.makanan_id)
+          }
         >
           {icon}
         </button>
@@ -21,7 +29,9 @@ const CardMakanan = ({ item, icon, action }) => {
         />
       </div>
       <div className="p-2">
-        <h1 className="text-hijau text-lg font-bold mb-2">{item.name}</h1>
+        <h1 className="text-hijau text-lg font-bold mb-2">
+          {item.nama_makanan}
+        </h1>
         <div className="flex flex-col gap-2">
           <div className="flex justify-between bg-biru text-putih py-1 px-2 rounded-sm">
             <span className="font-bold">Energi</span>
