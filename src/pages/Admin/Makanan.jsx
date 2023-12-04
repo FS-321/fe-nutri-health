@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { useReactToPrint } from "react-to-print";
 import { MdFastfood } from "react-icons/md";
 import { BiPlus, BiPrinter, BiSolidPencil, BiSolidTrash } from "react-icons/bi";
@@ -10,8 +10,6 @@ import Filter from "../../components/Filter/Filter";
 import Table from "../../components/Table/Table";
 import Pagination from "../../components/Pagnation/Pagination";
 
-import { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
 
 const Makanan = () => {
   const location = useLocation();
@@ -45,14 +43,14 @@ const Makanan = () => {
     }
   };
 
-  // const searchData = async () => {
-  //   try {
-  //     const { data } = await api.get(`/products/search?q=${search}`);
-  //     setData(data.products);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const searchData = useCallback(async () => {
+    try {
+      const { data } = await api.get(`/products/search?q=${search}`);
+      setData(data.products);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [search]);
 
   const deleteData = async () => {
     try {
@@ -68,9 +66,9 @@ const Makanan = () => {
     fetchDataMakanan();
   }, [page]);
 
-  // useEffect(() => {
-  //   searchData();
-  // }, [search]);
+  useEffect(() => {
+    searchData();
+  }, [search, searchData]);
 
   return (
     <LayoutAdmin>

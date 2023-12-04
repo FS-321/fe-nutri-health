@@ -1,5 +1,5 @@
 import { BiSolidTrash } from "react-icons/bi";
-
+import PropTypes from "prop-types";
 import Modal from "../Modal/Modal";
 
 const Table = ({ head, open, setOpen, print, children, deleteData }) => {
@@ -29,14 +29,12 @@ const Table = ({ head, open, setOpen, print, children, deleteData }) => {
           <div className="flex justify-between">
             <button
               className="btn btn-error w-[48%] text-putih text-bold"
-              onClick={() => deleteData()}
-            >
+              onClick={() => deleteData()}>
               Hapus
             </button>
             <button
               className="btn bg-light w-[48%] text-abu text-bold"
-              onClick={() => setOpen(false)}
-            >
+              onClick={() => setOpen(false)}>
               Batal
             </button>
           </div>
@@ -48,8 +46,11 @@ const Table = ({ head, open, setOpen, print, children, deleteData }) => {
 
 Table.propTypes = {
   head: PropTypes.array.isRequired,
-  endpoint: PropTypes.string.isRequired,
+  open: PropTypes.bool.isRequired,
+  setOpen: PropTypes.func.isRequired,
   print: PropTypes.func.isRequired,
+  children: PropTypes.node.isRequired,
+  deleteData: PropTypes.func.isRequired,
 };
 
 export default Table;
