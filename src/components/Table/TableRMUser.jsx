@@ -1,4 +1,5 @@
 import React from "react";
+import { formatDate } from "../../utils/formatDate";
 
 const TableRMUser = ({ head, data, dokter }) => {
   return (
@@ -16,7 +17,7 @@ const TableRMUser = ({ head, data, dokter }) => {
           {data?.map((item, i) => (
             <tr key={i}>
               <td>{i + 1}</td>
-              <td>{item.tanggal_periksa}</td>
+              <td>{formatDate(item.tanggal_periksa)}</td>
               <td>{item.keluhan}</td>
               <td>{dokter}</td>
               <td>{item.diagnosa || "-"}</td>

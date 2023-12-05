@@ -50,7 +50,7 @@ const LandingPage = () => {
     <>
       <NavbarLanding />
 
-      <div>
+      <div className="mt-16">
         <img src={photo2} alt="" className="w-full" />
       </div>
 
