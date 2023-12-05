@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { MdFastfood } from "react-icons/md";
 import { BiPlus, BiPrinter, BiSolidPencil, BiSolidTrash } from "react-icons/bi";
@@ -10,7 +10,6 @@ import Filter from "../../components/Filter/Filter";
 import Table from "../../components/Table/Table";
 import Pagination from "../../components/Pagnation/Pagination";
 
-
 const Makanan = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,8 +17,8 @@ const Makanan = () => {
 
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
-  const [page, setPage] = useState(1);
-  const [search, setSearch] = useState("");
+  // const [page, setPage] = useState(1);
+  // const [search, setSearch] = useState("");
   const [id, setId] = useState(0);
 
   const handleDelete = (idDelete) => {
@@ -45,14 +44,14 @@ const Makanan = () => {
     }
   };
 
-  const searchData = useCallback(async () => {
-    try {
-      const { data } = await api.get(`/products/search?q=${search}`);
-      setData(data.products);
-    } catch (error) {
-      console.log(error);
-    }
-  }, [search]);
+  // const searchData = async () => {
+  //   try {
+  //     const { data } = await api.get(`/products/search?q=${search}`);
+  //     setData(data.products);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const deleteData = async () => {
     try {
@@ -71,9 +70,9 @@ const Makanan = () => {
     fetchDataMakanan();
   }, []);
 
-  useEffect(() => {
-    searchData();
-  }, [search, searchData]);
+  // useEffect(() => {
+  //   searchData();
+  // }, [search]);
 
   return (
     <LayoutAdmin>
@@ -91,15 +90,14 @@ const Makanan = () => {
               </Link>
               <button
                 onClick={handlePrint}
-                className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary"
-              >
+                className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
                 <BiPrinter size={24} /> Cetak Data
               </button>
             </div>
           </div>
 
           <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg">
-            <Filter setSearch={setSearch} />
+            <Filter />
 
             <Table
               head={[
@@ -115,8 +113,7 @@ const Makanan = () => {
               setOpen={setOpen}
               print={componentRef}
               data={data}
-              deleteData={deleteData}
-            >
+              deleteData={deleteData}>
               {data?.map((item, i) => (
                 <tr key={i}>
                   <td>{i + 1}</td>
@@ -128,14 +125,12 @@ const Makanan = () => {
                   <td>
                     <Link
                       to={`/makanan/edit/${item.makanan_id}`}
-                      className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih"
-                    >
+                      className="btn btn-warning p-1 h-8 min-h-0 me-1 text-putih">
                       <BiSolidPencil size={20} />
                     </Link>
                     <Link
                       onClick={() => handleDelete(item.makanan_id)}
-                      className="btn btn-error p-1 h-8 min-h-0 text-putih"
-                    >
+                      className="btn btn-error p-1 h-8 min-h-0 text-putih">
                       <BiSolidTrash size={20} />
                     </Link>
                   </td>
@@ -143,7 +138,7 @@ const Makanan = () => {
               ))}
             </Table>
 
-            <Pagination setPage={setPage} />
+            <Pagination/>
           </div>
         </>
       ) : (

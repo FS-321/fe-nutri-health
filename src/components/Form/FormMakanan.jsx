@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { MdFastfood, MdInfoOutline } from "react-icons/md";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
->>>>>>> 0fc24b5876b2bab1bf39f837613b82d21f78f342
+import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
 
@@ -114,8 +114,7 @@ const FormMakanan = ({ action }) => {
               className="stroke-current shrink-0 h-6 w-6"
               fill="none"
               viewBox="0 0 24 24"
-              onClick={() => setError(false)}
-            >
+              onClick={() => setError(false)}>
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -220,14 +219,12 @@ const FormMakanan = ({ action }) => {
               className="btn btn-primary w-[48%] text-putih text-bold"
               onClick={() =>
                 isLocation ? addDataMakanan() : editDataMakanan()
-              }
-            >
+              }>
               Ya
             </button>
             <button
               className="btn bg-light w-[48%] text-abu text-bold"
-              onClick={() => setOpen(false)}
-            >
+              onClick={() => setOpen(false)}>
               Batal
             </button>
           </div>
@@ -236,7 +233,6 @@ const FormMakanan = ({ action }) => {
     </>
   );
 };
-
 FormMakanan.propTypes = {
   action: PropTypes.string.isRequired,
 };
