@@ -52,19 +52,12 @@ function App() {
         <Route path="tambah" element={<FormRekamMedis action="Tambah" />} />
         <Route path="edit/:id" element={<FormRekamMedis action="Edit" />} />
       </Route>
-      <Route path="/users/:id">
-      <Route path="/layanan" element={<Layanan />} />
-      <Route path="/data/pasien" element={<Pasien />} />
-      <Route path="/data/dokter" element={<Dokter />} />
-      <Route path="/data/poliklinik" element={<Poliklinik />} />
-      <Route path="/data/rekammedis" element={<RekamMedis />} />
       <Route path="/users/:iduser">
         <Route path="rekammedis" element={<RekamMedisUser />} />
         <Route path="favorite" element={<Favorite />} />
         <Route path="profile" element={<Profile />}>
           <Route path="edit" element={<FormProfile />} />
         </Route>
-      </Route>
       </Route>
     </Routes>
   );
