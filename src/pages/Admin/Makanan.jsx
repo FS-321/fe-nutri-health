@@ -41,10 +41,7 @@ const Makanan = () => {
 
   const fetchDataMakanan = async () => {
     try {
-      const { data } = await api.get(`/makanan`, {
-        pages: 1,
-        limit: 1,
-      });
+      const { data } = await api.get(`/makanan?pages=${page}&limit=${5}`);
 
       setData(data);
     } catch (error) {
@@ -54,7 +51,9 @@ const Makanan = () => {
 
   const searchData = async () => {
     try {
-      const { data } = await api.get(`/cari/makanan?keyword=${search}`);
+      const { data } = await api.get(
+        `/cari/makanan?keyword=${search}&limit=${5}`
+      );
       setData(data);
     } catch (error) {
       console.log(error);
@@ -76,7 +75,7 @@ const Makanan = () => {
 
   useEffect(() => {
     fetchDataMakanan();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     searchData();
@@ -101,12 +100,6 @@ const Makanan = () => {
                 className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary"
               >
                 <BiPrinter size={24} /> Cetak Data
-              </button>
-              <button
-                onClick={fetchDataMakanan}
-                className="flex items-center bg-birutua text-putih p-2 gap-1 rounded-sm hover:bg-primary"
-              >
-                <BiRefresh size={24} /> Refresh
               </button>
             </div>
           </div>

@@ -49,13 +49,13 @@ const Navbar = () => {
               <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <Link to="/">About Us</Link>
+              <Link to="/#about-us">About Us</Link>
             </li>
             <li>
-              <Link to="/">Service</Link>
+              <Link to="/#service">Service</Link>
             </li>
             <li>
-              <Link to="/">Nutition</Link>
+              <Link to="/#nutrition">Nutition</Link>
             </li>
             {user ? (
               <li>
@@ -121,20 +121,28 @@ const Navbar = () => {
                 </details>
               </li>
             ) : (
-              <li className="flex flex-row gap-1">
-                <Link
-                  to={"/login"}
-                  className="btn btn-outline border-putih text-putih text-lg hover:text-putih"
-                >
-                  <MdOutlineLogin />
-                  Login
+              <li className="flex flex-row gap-2 items-center">
+                <Link to={"/login"} className="hover:bg-transparent p-0">
+                  <a
+                    className={`custom-hijau font-medium py-1 px-4 rounded-md border ${
+                      isScrolled
+                        ? "border-hijau text-hijau"
+                        : "border-putih text-putih"
+                    }  hover:bg-hijautua hover:text-putih`}
+                  >
+                    Sign in
+                  </a>
                 </Link>
-                <Link
-                  to={"/register"}
-                  className="btn bg-putih text-hijau text-lg hover:text-putih"
-                >
-                  <MdOutlineLogin />
-                  Register
+                <Link to={"/register"} className="hover:bg-transparent p-0">
+                  <a
+                    className={`${
+                      isScrolled
+                        ? "bg-hijau text-putih "
+                        : "bg-putih text-hijau "
+                    } font-medium py-1 px-4 rounded-md border hover:text-putih hover:bg-hijautua`}
+                  >
+                    Sign Up
+                  </a>
                 </Link>
               </li>
             )}

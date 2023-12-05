@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../App.css";
 import { Icon } from "@iconify/react";
@@ -8,22 +8,24 @@ import { ToastContainer, toast } from "react-toastify";
 
 import photo from "../assets/dokter.png";
 import photo2 from "../assets/Group 97.png";
-import photo3 from "../assets/makan.png";
+// import photo3 from "../assets/makan.png";
 import mcu from "../assets/mcu.jpg";
 import lab from "../assets/lab2.jpg";
 import swab from "../assets/swab.jpg";
 import kemo from "../assets/kemo.jpg";
 import fisio from "../assets/fisio.jpg";
 import ambulance from "../assets/ambulance2.jpg";
-import wonton from "../assets/wonton.png";
-import ayam from "../assets/ayam.png";
-import steak from "../assets/steak.png";
-import ayam2 from "../assets/ayam-t.png";
-import mie from "../assets/spaghetti.png";
-import mac from "../assets/macaroni.png";
+// import wonton from "../assets/wonton.png";
+// import ayam from "../assets/ayam.png";
+// import steak from "../assets/steak.png";
+// import ayam2 from "../assets/ayam-t.png";
+// import mie from "../assets/spaghetti.png";
+// import mac from "../assets/macaroni.png";
 
 import NavbarLanding from "../components/layouts/NavbarLanding";
 import CardMakanan from "../components/Cards/CardMakanan";
+import ScrollToHashElement from "../components/ScrollToHashElement";
+import Navbar from "../components/layouts/Navbar";
 
 const LandingPage = () => {
   const [food, setFood] = useState([]);
@@ -48,7 +50,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <NavbarLanding />
+      <Navbar />
 
       <div className="mt-16">
         <img src={photo2} alt="" className="w-full" />
@@ -404,8 +406,7 @@ const LandingPage = () => {
               <div
                 key={i}
                 id={`slide-${i + 1}`}
-                className="carousel-item relative w-full"
-              >
+                className="carousel-item relative w-full">
                 <div className="flex mt-8 gap-8">
                   {slide.map((item, j) => (
                     <CardMakanan
