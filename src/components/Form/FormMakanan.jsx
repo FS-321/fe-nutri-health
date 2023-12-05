@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MdFastfood, MdInfoOutline } from "react-icons/md";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
 import { toast } from "react-toastify";
+import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal";
 import { btnNotif } from "../../utils/toastNotif";
@@ -243,6 +244,9 @@ const FormMakanan = ({ action }) => {
       </Modal>
     </>
   );
+};
+FormMakanan.propTypes = {
+  action: PropTypes.string.isRequired,
 };
 
 export default FormMakanan;
