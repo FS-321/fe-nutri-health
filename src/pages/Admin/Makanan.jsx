@@ -102,12 +102,6 @@ const Makanan = () => {
               >
                 <BiPrinter size={24} /> Cetak Data
               </button>
-              <button
-                onClick={fetchDataMakanan}
-                className="flex items-center bg-birutua text-putih p-2 gap-1 rounded-sm hover:bg-primary"
-              >
-                <BiRefresh size={24} /> Refresh
-              </button>
             </div>
           </div>
 

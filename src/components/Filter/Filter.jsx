@@ -1,12 +1,15 @@
-import { BiFilter } from "react-icons/bi";
+import { useState } from "react";
 
-const Filter = ({ setSearch }) => {
+const Filter = () => {
+  const [search, setSearch] = useState("");
+
   return (
     <div className="w-full flex items-center justify-between p-5">
       <input
         type="text"
         placeholder="Type here"
         className="input input-bordered w-full h-10 max-w-xs"
+        value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
       <select className="select w-28 text-lg border-hijau text-hijau">
