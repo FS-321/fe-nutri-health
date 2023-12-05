@@ -67,9 +67,7 @@ const Makanan = () => {
       fetchDataMakanan();
 
       setOpen(false);
-
       btnNotif("Delete makanan berhasil", toast.error);
-
       navigate("/makanan");
     } catch (error) {
       console.log(error);
@@ -78,12 +76,11 @@ const Makanan = () => {
 
   useEffect(() => {
     fetchDataMakanan();
-    searchData();
   }, []);
 
-  // useEffect(() => {
-  //   searchData();
-  // }, [search]);
+  useEffect(() => {
+    searchData();
+  }, [search]);
 
   return (
     <LayoutAdmin>
