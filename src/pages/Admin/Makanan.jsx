@@ -1,14 +1,22 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
 import { MdFastfood } from "react-icons/md";
-import { BiPlus, BiPrinter, BiSolidPencil, BiSolidTrash } from "react-icons/bi";
+import {
+  BiPlus,
+  BiPrinter,
+  BiRefresh,
+  BiSolidPencil,
+  BiSolidTrash,
+} from "react-icons/bi";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import api from "../../api/index";
+import { toast } from "react-toastify";
 
 import LayoutAdmin from "../../components/layouts/Admin/LayoutAdmin";
 import Filter from "../../components/Filter/Filter";
 import Table from "../../components/Table/Table";
 import Pagination from "../../components/Pagnation/Pagination";
+import { btnNotif } from "../../utils/toastNotif";
 
 const Makanan = () => {
   const navigate = useNavigate();
@@ -17,8 +25,8 @@ const Makanan = () => {
 
   const [open, setOpen] = useState(false);
   const [data, setData] = useState([]);
-  // const [page, setPage] = useState(1);
-  // const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState("");
   const [id, setId] = useState(0);
 
   const handleDelete = (idDelete) => {
@@ -44,14 +52,14 @@ const Makanan = () => {
     }
   };
 
-  // const searchData = async () => {
-  //   try {
-  //     const { data } = await api.get(`/products/search?q=${search}`);
-  //     setData(data.products);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const searchData = async () => {
+    try {
+      const { data } = await api.get(`/cari/makanan?keyword=${search}`);
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const deleteData = async () => {
     try {
@@ -59,7 +67,7 @@ const Makanan = () => {
       fetchDataMakanan();
 
       setOpen(false);
-
+      btnNotif("Delete makanan berhasil", toast.error);
       navigate("/makanan");
     } catch (error) {
       console.log(error);
@@ -70,9 +78,9 @@ const Makanan = () => {
     fetchDataMakanan();
   }, []);
 
-  // useEffect(() => {
-  //   searchData();
-  // }, [search]);
+  useEffect(() => {
+    searchData();
+  }, [search]);
 
   return (
     <LayoutAdmin>
@@ -93,11 +101,16 @@ const Makanan = () => {
                 className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary">
                 <BiPrinter size={24} /> Cetak Data
               </button>
+              <button
+                onClick={fetchDataMakanan}
+                className="flex items-center bg-birutua text-putih p-2 gap-1 rounded-sm hover:bg-primary">
+                <BiRefresh size={24} /> Refresh
+              </button>
             </div>
           </div>
 
           <div className="w-full flex flex-wrap gap-2 bg-base-100 shadow-lg mt-5 rounded-lg">
-            <Filter />
+            <Filter setSearch={setSearch} />
 
             <Table
               head={[
@@ -138,7 +151,7 @@ const Makanan = () => {
               ))}
             </Table>
 
-            <Pagination/>
+            <Pagination setPage={setPage} />
           </div>
         </>
       ) : (
