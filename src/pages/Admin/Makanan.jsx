@@ -41,10 +41,7 @@ const Makanan = () => {
 
   const fetchDataMakanan = async () => {
     try {
-      const { data } = await api.get(`/makanan`, {
-        pages: 1,
-        limit: 1,
-      });
+      const { data } = await api.get(`/makanan?pages=${page}&limit=${5}`);
 
       setData(data);
     } catch (error) {
@@ -54,7 +51,9 @@ const Makanan = () => {
 
   const searchData = async () => {
     try {
-      const { data } = await api.get(`/cari/makanan?keyword=${search}`);
+      const { data } = await api.get(
+        `/cari/makanan?keyword=${search}&limit=${5}`
+      );
       setData(data);
     } catch (error) {
       console.log(error);
@@ -76,7 +75,7 @@ const Makanan = () => {
 
   useEffect(() => {
     fetchDataMakanan();
-  }, []);
+  }, [page]);
 
   useEffect(() => {
     searchData();

@@ -18,26 +18,26 @@ const NavbarLanding = () => {
 
   const [isScrolled, setIsScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
-      const isNavbarScrolled = scrollTop > 0;
-      setIsScrolled(isNavbarScrolled);
-    };
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const scrollTop = window.scrollY;
+  //     const isNavbarScrolled = scrollTop > 0;
+  //     setIsScrolled(isNavbarScrolled);
+  //   };
 
-    window.addEventListener("scroll", handleScroll);
+  //   window.addEventListener("scroll", handleScroll);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
-  const handleScrollTo = (id) => {
-    scroller.scrollTo(id, {
-      smooth: true,
-      duration: 500,
-    });
-  };
+  // const handleScrollTo = (id) => {
+  //   scroller.scrollTo(id, {
+  //     smooth: true,
+  //     duration: 500,
+  //   });
+  // };
 
   return (
     <div
@@ -56,19 +56,13 @@ const NavbarLanding = () => {
               <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <Link to="/" onClick={() => handleScrollTo("about-us")}>
-                About Us
-              </Link>
+              <Link to="/#about-us">About Us</Link>
             </li>
             <li>
-              <Link to="/" onClick={() => handleScrollTo("service")}>
-                Service
-              </Link>
+              <Link to="/#service">Service</Link>
             </li>
             <li>
-              <Link to="/" onClick={() => handleScrollTo("nutrition")}>
-                Nutition
-              </Link>
+              <Link to="/#nutrition">Nutition</Link>
             </li>
             {user ? (
               <li>
