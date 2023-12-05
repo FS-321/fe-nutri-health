@@ -1,13 +1,25 @@
+import { toast } from "react-toastify";
 import useFavoriteStore, {
   selectAddFavorite,
   selectDeleteFavorite,
 } from "../../stores/favorite";
 import { userLogin } from "../../utils/userAuth";
+import { btnNotif } from "../../utils/toastNotif";
 
 const CardMakanan = ({ item, icon, action }) => {
+  const user = userLogin();
   const addfavorite = useFavoriteStore(selectAddFavorite);
   const deleteFavorite = useFavoriteStore(selectDeleteFavorite);
-  const user = userLogin();
+
+  const handleSubmit = () => {
+    action === "add"
+      ? addfavorite(item?.makanan_id)
+      : deleteFavorite(item?.makanan_id);
+
+    action === "add"
+      ? btnNotif("Dimasukkan ke Favorite", toast.info)
+      : btnNotif("Dihapus dari Favorite", toast.error);
+  };
 
   return (
     <div className="w-52 flex flex-col bg-base-100 shadow-lg rounded-lg relative">
@@ -16,11 +28,7 @@ const CardMakanan = ({ item, icon, action }) => {
           className={`btn btn-circle btn-sm absolute right-2 top-2 ${
             action === "add" ? "text-hijau" : "text-merah"
           }`}
-          onClick={() =>
-            action === "add"
-              ? addfavorite(item?.makanan_id)
-              : deleteFavorite(item?.makanan_id)
-          }
+          onClick={handleSubmit}
           disabled={user ? false : true}
         >
           {icon}

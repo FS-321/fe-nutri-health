@@ -2,48 +2,6 @@ import create from "zustand";
 import { produce } from "immer";
 import api from "../api";
 
-import { userLogin } from "../utils/userAuth";
-
-// const user = userLogin();
-// const data = [
-//   {
-//     id: 1,
-//     name: "Udang",
-//     url: "https://www.dapurkobe.co.id/wp-content/uploads/udang-goreng-bumbu.jpg",
-//     energi: "2",
-//     protein: "3",
-//     lemak: "4",
-//     karbohidrat: "5",
-//   },
-//   {
-//     id: 2,
-//     name: "Cumi",
-//     url: "https://pict.sindonews.net/dyn/850/pena/news/2021/03/08/185/357390/resep-cumi-goreng-tepung-yang-empuk-krenyes-ghy.jpg",
-//     energi: "2",
-//     protein: "3",
-//     lemak: "4",
-//     karbohidrat: "5",
-//   },
-//   {
-//     id: 3,
-//     name: "Telur",
-//     url: "https://img-global.cpcdn.com/recipes/c04ca908eed73ee0/680x482cq70/telur-dadar-tepung-foto-resep-utama.jpg",
-//     energi: "2",
-//     protein: "3",
-//     lemak: "4",
-//     karbohidrat: "5",
-//   },
-//   {
-//     id: 4,
-//     name: "Ikan",
-//     url: "https://awsimages.detik.net.id/community/media/visual/2023/06/15/resep-fillet-ikan-goreng-tepung_43.jpeg?w=600&q=90",
-//     energi: "2",
-//     protein: "3",
-//     lemak: "4",
-//     karbohidrat: "5",
-//   },
-// ];
-
 const sliceFavorite = (set) => ({
   favorite: [],
   error: null,
@@ -65,6 +23,16 @@ const sliceFavorite = (set) => ({
     );
   },
 
+  searchFavorite: async (payload) => {
+    const { data } = await api.get(`/cari/favorite?keyword=${payload}`);
+
+    set(
+      produce((state) => {
+        state.favorite = data;
+      })
+    );
+  },
+
   addFavorite: (id) => {
     set(
       produce(async (state) => {
@@ -82,13 +50,7 @@ const sliceFavorite = (set) => ({
   deleteFavorite: (id) => {
     set(
       produce(async (state) => {
-        const findId = state.favorite.some((state) => state.id === id);
-
-        if (!findId) {
-          state.error = "id tidak ada";
-        } else {
-          await api.delete(`/makanan/${id}/favorite`);
-        }
+        return await api.delete(`/makanan/${id}/favorite`);
       })
     );
   },
@@ -99,6 +61,7 @@ const useFavoriteStore = create(sliceFavorite);
 export const selectFavorite = (state) => state.favorite;
 export const selectError = (state) => state.error;
 export const selectFetchFavorite = (state) => state.fetchFavorite;
+export const selectSearchFavorite = (state) => state.searchFavorite;
 export const selectAddFavorite = (state) => state.addFavorite;
 export const selectDeleteFavorite = (state) => state.deleteFavorite;
 

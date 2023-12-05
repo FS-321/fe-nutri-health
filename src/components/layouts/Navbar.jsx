@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   MdDashboard,
   MdFastfood,
@@ -8,7 +9,6 @@ import {
   MdOutlineLogin,
 } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
-import { scroller } from "react-scroll";
 
 import { handleLogout, userLogin } from "../../utils/userAuth";
 
@@ -16,15 +16,35 @@ const Navbar = () => {
   const navigate = useNavigate();
   const user = userLogin();
 
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const isNavbarScrolled = scrollTop > 0;
+      setIsScrolled(isNavbarScrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="navbar bg-hijau p-0">
+    <div
+      className={`navbar transition-all duration-300 shadow-sm ${
+        isScrolled ? "bg-putih text-hijau" : "bg-hijau text-putih"
+      }  p-0 fixed top-0 w-full z-50`}
+    >
       <div className="container mx-20">
         <div className="flex-1 flex flex-row items-center gap-2">
           <img src="https://i.ibb.co/f0ZY4XR/Vector.png" />
-          <a className="text-xl text-putih font-semibold">Nutri Health</a>
+          <a className="text-xl font-semibold">Nutri Health</a>
         </div>
         <div className="flex-none">
-          <ul className="menu menu-horizontal px-1 text-putih text-lg items-center">
+          <ul className="menu menu-horizontal px-1 text-lg items-center">
             <li>
               <Link to={"/"}>Home</Link>
             </li>

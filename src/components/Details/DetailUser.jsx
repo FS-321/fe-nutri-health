@@ -6,9 +6,9 @@ const DetailUser = ({ data }) => {
     <div className="w-full flex flex-wrap justify-center gap-2 bg-base-100 shadow-lg mt-5 rounded-lg p-5">
       <div className="mb-5">
         <img
-          src="https://reqres.in/img/faces/1-image.jpg"
+          src="https://i.pinimg.com/originals/c6/e9/ed/c6e9ed167165ca99c4d428426e256fae.png"
           alt="profile"
-          className="rounded-full"
+          className="rounded-full w-40"
         />
       </div>
 
@@ -44,12 +44,6 @@ const DetailUser = ({ data }) => {
           </div>
         </div>
       </div>
-      {/* <div className="w-full flex flex-col gap-2">
-        <label className="text-hijau text-xl font-semibold">Alamat</label>
-        <div className="border border-abu py-2 px-3 rounded-lg text-xl">
-          {data.description}
-        </div>
-      </div> */}
     </div>
   );
 };
