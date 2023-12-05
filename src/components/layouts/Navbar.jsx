@@ -49,13 +49,13 @@ const Navbar = () => {
               <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <Link to="/">About Us</Link>
+              <Link to="/#about-us">About Us</Link>
             </li>
             <li>
-              <Link to="/">Service</Link>
+              <Link to="/#service">Service</Link>
             </li>
             <li>
-              <Link to="/">Nutition</Link>
+              <Link to="/#nutrition">Nutition</Link>
             </li>
             {user ? (
               <li>
@@ -124,14 +124,20 @@ const Navbar = () => {
               <li className="flex flex-row gap-1">
                 <Link
                   to={"/login"}
-                  className="btn btn-outline border-putih text-putih text-lg hover:text-putih"
+                  className={`btn btn-outline ${
+                    isScrolled
+                      ? "border-hijau text-hijau"
+                      : "border-putih text-putih"
+                  }  text-lg hover:text-putih`}
                 >
                   <MdOutlineLogin />
                   Login
                 </Link>
                 <Link
                   to={"/register"}
-                  className="btn bg-putih text-hijau text-lg hover:text-putih"
+                  className={`btn ${
+                    isScrolled ? "bg-hijau text-putih " : "bg-putih text-hijau"
+                  } text-lg hover:text-putih`}
                 >
                   <MdOutlineLogin />
                   Register
