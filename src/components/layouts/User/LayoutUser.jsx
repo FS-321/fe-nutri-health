@@ -1,3 +1,4 @@
+import { ToastContainer } from "react-toastify";
 import Navbar from "../Navbar";
 import SidebarUser from "./SidebarUser";
 
@@ -8,6 +9,7 @@ const LayoutUser = ({ children }) => {
       <div className="flex px-20 mt-10 gap-10">
         <SidebarUser />
         <div className="w-full">{children}</div>
+        <ToastContainer />
       </div>
     </div>
   );

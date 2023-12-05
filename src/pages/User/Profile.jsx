@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MdCreate, MdPerson } from "react-icons/md";
+import { MdCreate, MdPerson, MdRefresh } from "react-icons/md";
 import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import api from "../../api";
 
@@ -45,6 +45,12 @@ const Profile = () => {
                   <MdCreate size={24} /> Edit Profile
                 </button>
               </Link>
+              <button
+                onClick={fetchDataUser}
+                className="flex items-center bg-birutua text-putih p-2 gap-1 rounded-sm hover:bg-oren"
+              >
+                <MdRefresh size={24} /> Refresh
+              </button>
             </div>
           </div>
 

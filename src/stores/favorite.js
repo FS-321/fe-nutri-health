@@ -82,13 +82,7 @@ const sliceFavorite = (set) => ({
   deleteFavorite: (id) => {
     set(
       produce(async (state) => {
-        const findId = state.favorite.some((state) => state.id === id);
-
-        if (!findId) {
-          state.error = "id tidak ada";
-        } else {
-          await api.delete(`/makanan/${id}/favorite`);
-        }
+        return await api.delete(`/makanan/${id}/favorite`);
       })
     );
   },

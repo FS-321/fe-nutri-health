@@ -4,6 +4,7 @@ import "../App.css";
 import { Icon } from "@iconify/react";
 import api from "../api/index";
 import { FaPlus } from "react-icons/fa";
+import { ToastContainer, toast } from "react-toastify";
 
 import photo from "../assets/dokter.png";
 import photo2 from "../assets/Group 97.png";
@@ -480,6 +481,8 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
+
+      <ToastContainer />
     </>
   );
 };

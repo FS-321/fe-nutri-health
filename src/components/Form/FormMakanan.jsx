@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { MdFastfood, MdInfoOutline } from "react-icons/md";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
+import { toast } from "react-toastify";
 
 import Modal from "../Modal/Modal";
+import { btnNotif } from "../../utils/toastNotif";
 
 const FormMakanan = ({ action }) => {
   const navigate = useNavigate();
@@ -28,6 +30,22 @@ const FormMakanan = ({ action }) => {
     });
   };
 
+  const fetchById = async () => {
+    try {
+      const { data } = await api.get(`/makanan/${id}`);
+
+      setData({
+        nama: data.nama_makanan,
+        energi: data.energi,
+        protein: data.protein,
+        lemak: data.lemak,
+        karbohidrat: data.karbohidrat,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const addDataMakanan = async () => {
     if (
       !data.energi ||
@@ -48,8 +66,6 @@ const FormMakanan = ({ action }) => {
         karbohidrat: data.karbohidrat,
       });
 
-      navigate("/makanan", { replace: true });
-
       setData({
         nama: "",
         energi: 0,
@@ -62,22 +78,6 @@ const FormMakanan = ({ action }) => {
     }
   };
 
-  const fetchById = async () => {
-    try {
-      const { data } = await api.get(`/makanan/${id}`);
-
-      setData({
-        nama: data.nama_makanan,
-        energi: data.energi,
-        protein: data.protein,
-        lemak: data.lemak,
-        karbohidrat: data.karbohidrat,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   const editDataMakanan = async () => {
     try {
       await api.put(`/makanan/${id}`, {
@@ -87,7 +87,6 @@ const FormMakanan = ({ action }) => {
         lemak: data.lemak,
         karbohidrat: data.karbohidrat,
       });
-      navigate("/makanan");
     } catch (error) {
       console.log(error);
     }
@@ -96,6 +95,18 @@ const FormMakanan = ({ action }) => {
   useEffect(() => {
     fetchById();
   }, [id]);
+
+  const handleSubmit = () => {
+    isLocation ? addDataMakanan() : editDataMakanan();
+    btnNotif(
+      isLocation ? "Tambah makanan berhasil" : "Edit makanan berhasil",
+      toast.success
+    );
+
+    setTimeout(() => {
+      navigate("/makanan");
+    }, 3000);
+  };
 
   return (
     <>
@@ -217,9 +228,7 @@ const FormMakanan = ({ action }) => {
           <div className="flex justify-between">
             <button
               className="btn btn-primary w-[48%] text-putih text-bold"
-              onClick={() =>
-                isLocation ? addDataMakanan() : editDataMakanan()
-              }
+              onClick={() => handleSubmit()}
             >
               Ya
             </button>

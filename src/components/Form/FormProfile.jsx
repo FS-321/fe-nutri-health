@@ -4,7 +4,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import api from "../../api";
 
 import Modal from "../Modal/Modal";
-import { userLogin } from "../../utils/userAuth";
+import { btnNotif } from "../../utils/toastNotif";
+import { toast } from "react-toastify";
 
 const FormProfile = (props) => {
   const { iduser } = useParams();
@@ -51,7 +52,12 @@ const FormProfile = (props) => {
 
     try {
       await api.put("/user", payload);
-      navigate(`/users/${iduser}/profile`);
+
+      btnNotif("Edit profile berhasil", toast.success);
+
+      setTimeout(() => {
+        navigate(`/users/${iduser}/profile`);
+      }, 1000);
     } catch (error) {
       console.log(error);
     }
