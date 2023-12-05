@@ -23,6 +23,16 @@ const sliceFavorite = (set) => ({
     );
   },
 
+  searchFavorite: async (payload) => {
+    const { data } = await api.get(`/cari/favorite?keyword=${payload}`);
+
+    set(
+      produce((state) => {
+        state.favorite = data;
+      })
+    );
+  },
+
   addFavorite: (id) => {
     set(
       produce(async (state) => {
@@ -51,6 +61,7 @@ const useFavoriteStore = create(sliceFavorite);
 export const selectFavorite = (state) => state.favorite;
 export const selectError = (state) => state.error;
 export const selectFetchFavorite = (state) => state.fetchFavorite;
+export const selectSearchFavorite = (state) => state.searchFavorite;
 export const selectAddFavorite = (state) => state.addFavorite;
 export const selectDeleteFavorite = (state) => state.deleteFavorite;
 

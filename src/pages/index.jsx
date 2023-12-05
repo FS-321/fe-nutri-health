@@ -423,9 +423,9 @@ const LandingPage = () => {
       </div>
 
       <footer className="bg-hijau text-putih mt-10">
-        <div className="container mx-auto py-10">
+        <div className="container mx-16 py-10">
           <div className="flex flex-wrap justify-between">
-            <div className="w-full md:w-1/3">
+            <div className="w-full md:w-1/4">
               <h3 className="text-xl font-semibold">Nutri Health</h3>
               <p className="mt-3">
                 Jl. Sunan Kalijaga No. 100, Tansungpinang, Kepulauan Riau
@@ -433,7 +433,7 @@ const LandingPage = () => {
               <p className="mt-3">Email: nutrihealth@mail.com</p>
               <p className="mt-3">Phone: (+62) 812-3456-7890 </p>
             </div>
-            <div className="w-full md:w-1/3 mt-5 md:mt-0 pl-10">
+            <div className="w-full md:w-1/4 mt-5 md:mt-0 pl-10">
               <h3 className="text-xl font-bold">About Us</h3>
               <ul className="mt-3">
                 <li>
@@ -450,7 +450,7 @@ const LandingPage = () => {
                 </li>
               </ul>
             </div>
-            <div className="w-full md:w-1/3 mt-5 md:mt-0">
+            <div className="w-full md:w-1/4 mt-5 md:mt-0">
               <h3 className="text-xl font-bold">Connect with Us</h3>
               <ul className="mt-3 flex flex-row gap-4">
                 <li>
@@ -475,9 +475,13 @@ const LandingPage = () => {
                 </li>
               </ul>
             </div>
-          </div>
-          <div className="text-center mt-10">
-            <p>Copyrigth &copy; 2023 Nutri Health. All rights reserved</p>
+            <div className="w-full md:w-1/4 md:mt-0 mt-10">
+              <p>Copyrigth &copy; 2023 Nutri Health</p>
+              <div className="flex-1 flex flex-row items-center gap-2 mt-3">
+                <img src="https://i.ibb.co/f0ZY4XR/Vector.png" />
+                <a className="text-xl text-putih font-semibold">Nutri Health</a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>

@@ -16,7 +16,7 @@ const RekamMedis = () => {
       const { data } = await api.get(`/rekam-medis`);
 
       const fetchDokter = data.map(async (item) => {
-        const res = await api.get(`dokter/${item.dokter_id}`);
+        const res = await api.get(`/dokter/${item.dokter_id}`);
         return res.data;
       });
       const result = await Promise.all(fetchDokter);
