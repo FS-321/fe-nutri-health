@@ -9,15 +9,20 @@ import TableRMUser from "../../components/Table/TableRMUser";
 
 const RekamMedis = () => {
   const [data, setData] = useState([]);
+  const [namaDokter, setNamaDokter] = useState("");
 
   const fetchDataRM = async () => {
     try {
-      const { data } = await api.get(`/data-rekam-medis`, {
-        pages: 1,
-        limit: 1,
+      const { data } = await api.get(`/rekam-medis`);
+
+      const fetchDokter = data.map(async (item) => {
+        const res = await api.get(`dokter/${item.dokter_id}`);
+        return res.data;
       });
+      const result = await Promise.all(fetchDokter);
 
       setData(data);
+      setNamaDokter(`${result[0].nama_depan} ${result[0].nama_belakang}`);
     } catch (error) {
       console.log(error);
     }
@@ -36,8 +41,9 @@ const RekamMedis = () => {
         <Filter />
 
         <TableRMUser
-          head={["No", "Tanggal", "Pasien", "Keluhan", "Dokter", "Diagnosa"]}
+          head={["No", "Tanggal", "Keluhan", "Dokter", "Diagnosa"]}
           data={data}
+          dokter={namaDokter}
         />
 
         <Pagination />

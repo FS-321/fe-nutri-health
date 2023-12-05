@@ -52,14 +52,14 @@ const Makanan = () => {
     }
   };
 
-  // const searchData = async () => {
-  //   try {
-  //     const { data } = await api.get(`/products/search?q=${search}`);
-  //     setData(data.products);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const searchData = async () => {
+    try {
+      const { data } = await api.get(`/cari/makanan?keyword=${search}`);
+      setData(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const deleteData = async () => {
     try {
@@ -78,6 +78,7 @@ const Makanan = () => {
 
   useEffect(() => {
     fetchDataMakanan();
+    searchData();
   }, []);
 
   // useEffect(() => {
