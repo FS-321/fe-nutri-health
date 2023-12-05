@@ -49,13 +49,13 @@ const Navbar = () => {
               <Link to={"/"}>Home</Link>
             </li>
             <li>
-              <Link to="/">About Us</Link>
+              <Link to="/#about-us">About Us</Link>
             </li>
             <li>
-              <Link to="/">Service</Link>
+              <Link to="/#service">Service</Link>
             </li>
             <li>
-              <Link to="/">Nutition</Link>
+              <Link to="/#nutrition">Nutition</Link>
             </li>
             {user ? (
               <li>

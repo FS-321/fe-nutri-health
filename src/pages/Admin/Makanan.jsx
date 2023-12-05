@@ -41,10 +41,7 @@ const Makanan = () => {
 
   const fetchDataMakanan = async () => {
     try {
-      const { data } = await api.get(`/makanan`, {
-        pages: 1,
-        limit: 1,
-      });
+      const { data } = await api.get(`/makanan?pages=${page}&limit=${5}`);
 
       setData(data);
     } catch (error) {
@@ -52,14 +49,14 @@ const Makanan = () => {
     }
   };
 
-  const searchData = async () => {
-    try {
-      const { data } = await api.get(`/cari/makanan?keyword=${search}`);
-      setData(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const searchData = async () => {
+  //   try {
+  //     const { data } = await api.get(`/cari/makanan?keyword=${search}`);
+  //     setData(data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   const deleteData = async () => {
     try {
@@ -76,11 +73,11 @@ const Makanan = () => {
 
   useEffect(() => {
     fetchDataMakanan();
-  }, []);
+  }, [page]);
 
-  useEffect(() => {
-    searchData();
-  }, [search]);
+  // useEffect(() => {
+  //   searchData();
+  // }, [search]);
 
   return (
     <LayoutAdmin>

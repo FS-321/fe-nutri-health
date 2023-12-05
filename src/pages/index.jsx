@@ -24,6 +24,8 @@ import mac from "../assets/macaroni.png";
 
 import NavbarLanding from "../components/layouts/NavbarLanding";
 import CardMakanan from "../components/Cards/CardMakanan";
+import ScrollToHashElement from "../components/ScrollToHashElement";
+import Navbar from "../components/layouts/Navbar";
 
 const LandingPage = () => {
   const [food, setFood] = useState([]);
@@ -48,7 +50,7 @@ const LandingPage = () => {
 
   return (
     <>
-      <NavbarLanding />
+      <Navbar />
 
       <div className="mt-16">
         <img src={photo2} alt="" className="w-full" />
