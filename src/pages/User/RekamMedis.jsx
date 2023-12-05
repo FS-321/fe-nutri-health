@@ -9,11 +9,11 @@ import TableRMUser from "../../components/Table/TableRMUser";
 
 const RekamMedis = () => {
   const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
   const [namaDokter, setNamaDokter] = useState("");
-
   const fetchDataRM = async () => {
     try {
-      const { data } = await api.get(`/rekam-medis`);
+      const { data } = await api.get(`/rekam-medis?page=${page}&limit=${5}`);
 
       const fetchDokter = data.map(async (item) => {
         const res = await api.get(`/dokter/${item.dokter_id}`);
@@ -30,7 +30,7 @@ const RekamMedis = () => {
 
   useEffect(() => {
     fetchDataRM();
-  }, []);
+  }, [page]);
 
   return (
     <LayoutUser>
@@ -46,7 +46,7 @@ const RekamMedis = () => {
           dokter={namaDokter}
         />
 
-        <Pagination />
+        <Pagination setPage={setPage} />
       </div>
     </LayoutUser>
   );
