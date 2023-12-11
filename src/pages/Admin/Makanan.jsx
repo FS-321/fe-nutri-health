@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
-import { MdFastfood } from "react-icons/md";
+import { MdFastfood, MdRefresh } from "react-icons/md";
 import {
   BiPlus,
   BiPrinter,
@@ -100,6 +100,12 @@ const Makanan = () => {
                 className="flex items-center bg-biru text-putih p-2 gap-1 rounded-sm hover:bg-primary"
               >
                 <BiPrinter size={24} /> Cetak Data
+              </button>
+              <button
+                onClick={fetchDataMakanan}
+                className="flex items-center bg-birutua text-putih p-2 gap-1 rounded-sm hover:bg-oren"
+              >
+                <MdRefresh size={24} /> Refresh
               </button>
             </div>
           </div>
