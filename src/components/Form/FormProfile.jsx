@@ -13,9 +13,11 @@ const FormProfile = (props) => {
 
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({
+    user_id: "",
     nama_depan: "",
     nama_belakang: "",
     email: "",
+    tanggal_lahir: "",
     no_hp: "",
     password: "",
   });
@@ -29,13 +31,17 @@ const FormProfile = (props) => {
 
   const fetchDataUser = async () => {
     try {
-      const { data } = await api.get(`/user/${iduser}`);
+      // const { data } = await api.get(`/user/${iduser}`);
+      const userData = await localStorage.getItem("user");
+      const user = await JSON.parse(userData);
       setData({
-        nama_depan: data.dataValues.nama_depan,
-        nama_belakang: data.dataValues.nama_belakang,
-        email: data.dataValues.email,
-        no_hp: data.dataValues.no_hp,
-        password: data.dataValues.password,
+        user_id: user.user_id,
+        nama_depan: user.nama_depan,
+        nama_belakang: user.nama_belakang,
+        email: user.email,
+        tanggal_lahir: user.tanggal_lahir,
+        no_hp: user.no_hp,
+        password: user.password,
       });
     } catch (error) {
       console.log(error);
@@ -47,11 +53,12 @@ const FormProfile = (props) => {
   }, []);
 
   const handleEdit = async () => {
-    const { nama_depan, nama_belakang, email, no_hp, password } = data;
-    const payload = { nama_depan, nama_belakang, email, no_hp, password };
+    const payload = data;
 
     try {
-      await api.put("/user", payload);
+      await api.put(`/user/${data.user_id}`, payload);
+
+      localStorage.setItem("user", JSON.stringify(payload));
 
       btnNotif("Edit profile berhasil", toast.success);
 
