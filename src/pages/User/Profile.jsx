@@ -15,8 +15,10 @@ const Profile = () => {
 
   const fetchDataUser = async () => {
     try {
-      const { data } = await api.get(`/user/${iduser}`);
-      setData(data.dataValues);
+      // const { data } = await api.get(`/user/${iduser}`);
+      const userData = await localStorage.getItem("user");
+      const user = await JSON.parse(userData);
+      setData(user);
     } catch (error) {
       console.log(error);
     }
